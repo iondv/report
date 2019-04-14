@@ -1,0 +1,57 @@
+<!-- layout/top-menu -->
+
+<div id="top-menu" class="top-menu">
+<%
+  if (typeof explicitTopMenu !== 'undefined' && Array.isArray(explicitTopMenu)) {
+    explicitTopMenu.forEach((node) => {
+      if (node && typeof node === 'object' && node.type === 'system') {
+        for (let item of sysMenu) {
+          if (!item.name) {
+            continue;
+          }
+
+          if (item.name === node.name) { 
+            let id = `n_sysMenu_${item.name.replace('.', '_')}`; %>
+            <div class="top-menu-item <%= item.name === module ? 'active' : '' %>">
+              <a id="<%=id%>" class="btn" href="<%=item.name%>"<%= item.external ? ' target="_blank"' : '' %>>
+                <%=item.description%>
+              </a>
+            </div>
+          <% }
+        }
+      } else if (node && typeof node === 'object' && node.id && node.caption) {
+        let id = `n_${node.id.replace('.', '_')}`; %>
+        <div class="top-menu-item">
+        <% if (node.section) { %>
+          <a id="<%= id %>" title="<%= node.hint || node.caption %>" class="btn top-menu-section"><%= node.caption %></a>
+        <% } else { %>
+          <a id="<%= id %>" <%- node.url ? 'href="' + node.url + '"' : '' %> title="<%= node.hint || node.caption %>"
+          <% if (node.external) { %>
+            <%= 'target="_blank" ' %>
+          <% } %>
+          class="btn<%= !node.url ? ' top-menu-section' : '' %>"><%= node.caption %></a>
+        <% } %>
+        </div>
+<%
+      }
+    });
+  } else {
+    sysMenu.forEach(function (item) {
+      let id = `n_sysMenu_${item.name.replace('.', '_')}`; %>
+      <div class="top-menu-item <% if (item.name === module) {%>active<%}%>">
+        <a id="<%= id %>" class="btn"
+          href="<%= item.name %>"
+          title="<%= item.description %>">
+          <%= item.description %>
+        </a>
+      </div>
+  <% });
+  }
+%>
+  <div class="top-menu-item more-menu-item dropdown">
+    <button class="btn" type="button" data-toggle="dropdown">
+      More <i class="fa fa-angle-down"></i>
+    </button>
+    <div class="dropdown-menu more-menu"></div>
+  </div>
+</div>

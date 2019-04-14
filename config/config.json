@@ -1,0 +1,43 @@
+{
+  "parametrised": true,
+  "sysTitle": "ION Datamining",
+  "di": {
+    "reportMeta": {
+      "module": "./lib/impl/DsReportMetaRepository",
+      "initMethod": "init",
+      "initLevel": 1,
+      "options": {
+        "dataSource": "ion://Db",
+        "calc": "ion://calculator"
+      }
+    },
+    "mineBuilder": {
+      "module": "./lib/impl/StdMineBuilder",
+      "options": {
+        "dataSource": "ion://Db",
+        "metaRepo": "ion://metaRepo",
+        "dataRepo": "ion://dataRepo"
+      }
+    },
+    "reportBuilder": {
+      "module": "./lib/impl/StdReportBuilder",
+      "options": {
+        "dataSource": "ion://Db",
+        "metaRepo": "ion://metaRepo",
+        "dataRepo": "ion://dataRepo"
+      }
+    },
+    "reportExporter": {
+      "module": "./backend/exporter",
+      "initMethod": "init",
+      "initLevel": 2,
+      "options": {
+        "exportPath": "[[report.exportPath]]",
+        "log": "ion://sysLog",
+        "bg": "ion://background",
+        "reportMeta": "ion://reportMeta",
+        "reportBuilder": "ion://reportBuilder"
+      }
+    }
+  }
+}

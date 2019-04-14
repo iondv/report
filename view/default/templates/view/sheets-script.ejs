@@ -1,0 +1,313 @@
+<script language="JavaScript">
+  function prepareVal(input) {
+    var $input = $(input);
+    if ($input.hasClass('date')) {
+      return {v: moment($input.val(), "<%=locale.dateFormat%>").format(), f: "date"};
+    }
+    return {v: $input.val(), f: "string"};
+  }
+
+  function formReloadParams($sheet) {
+    var rf = {};
+    var params = {};
+    var paramTypes = {};
+    $('.range-filter, .fetch-param', $sheet.closest('.bi-sheet')).each(function () {
+      var inclusive = $(this).attr("range-inclusive");
+      var inputs = $(':input', this);
+      if (inputs.length > 1) {
+        inputs.each(function () {
+          if (!rf[this.name]) {
+            rf[this.name] = [];
+            rf[this.name].inclusive = inclusive;
+          }
+          rf[this.name].push(prepareVal(this).v);
+        });
+      } else {
+        inputs.each(function () {
+          var pv = prepareVal(this);
+          params[this.name] = pv.v;
+          if (pv.f) {
+            paramTypes[this.name] = pv.f;
+          }
+        });
+      }
+    });
+    return {
+      rf: rf,
+      params: params,
+      paramTypes: paramTypes
+    };
+  }
+
+  function reloadSheet(url, cb) {
+    var $sheet = $(this);
+    var opts = formReloadParams($sheet);
+    if ($sheet.hasClass('pivot-sheet')) {
+      $sheet.ionPivot({
+        params: opts.params,
+        locale: <%- JSON.stringify(locale)%>
+      });
+    } else {
+      $sheet.sheet({
+        method: 'reload',
+        rangeFilter: opts.rf,
+        params: opts.params,
+        paramTypes: opts.paramTypes,
+        url: url,
+        cb: cb
+      });
+    }
+  }
+
+  function pageOptions(totalCount, pageSize, curPage) {
+    var totalPages = Math.ceil(totalCount / pageSize);
+    var data = [];
+    var i, start, end;
+    for (var i = 1; i <= totalPages; i++) {
+      start = (i - 1) * pageSize + 1;
+      end = i === totalPages ? totalCount : i * pageSize;
+      data.push({
+        id: i,
+        text: i + ' (' + start + '-' + end + ')',
+        selected: i == curPage ? true : false
+      })
+    }
+    return data;
+  }
+
+  function loadPagination(totalCount) {
+    var $this = $sheet = $(this);
+    totalCount = parseInt(totalCount) || 0;
+    var pageSize = parseInt($this.attr('page-size')) || 0;
+    var $biSheet = $this.closest('.bi-sheet');
+    var $paginationWrapper = $biSheet.find('.sheet-pagination-wrapper');
+    var $pagination = $biSheet.find('.sheet-pagination');
+    var $totalCountSpan = $biSheet.find('span.sheet-total-count');
+    if (pageSize && totalCount) {
+      $totalCountSpan.html(totalCount);
+      var totalPages = Math.ceil(totalCount / pageSize);
+      $sheet.data('total-pages', totalPages);
+      $pagination.find('span.input-group-addon').text('/ ' + totalPages);
+      $pagination.find('select').html('').off().select2({
+        data: pageOptions(totalCount, pageSize, $sheet.data('page') || 1)
+      }).on('change', function () {
+        var page = $(this).val();
+        $sheet.data('page', page);
+        reloadSheet.apply($sheet.get(0));
+      });
+      $paginationWrapper.show();
+    } else {
+      $paginationWrapper.hide();
+    }
+  }
+
+  function parseQuery(q) {
+    var i, j, param, nm, anm;
+    var pairs = q.split('&');
+    var result = {};
+    for (i = 0; i < pairs.length; i++) {
+      param = pairs[i].split('=');
+      j = param[0].indexOf('[');
+      if (j > 0) {
+        nm = param[0].substring(0, j);
+        if (!result[nm]) {
+          result[nm] = {};
+        }
+        anm = param[0].substring(j + 1, param[0].lastIndexOf(']'));
+        result[nm][anm] = decodeURIComponent(param[1]);
+      }
+    }
+    return result;
+  }
+
+  $(function () {
+    var d = moment();
+    var today = d.format("<%=locale.dateFormat%>");
+    d.date(1);
+    d.hour(0);
+    d.minute(0);
+    d.second(0);
+    d.millisecond(0);
+    var fmd = d.format("<%=locale.dateFormat%>");
+    d.add(1, 'M');
+    d.subtract(1, 'ms');
+    var lmd = d.format("<%=locale.dateFormat%>");
+    var preFilters = {};
+    if (location.hash) {
+      try {
+        preFilters = parseQuery(location.hash.substr(1));
+        location.hash = '';
+      } catch (e) {
+        console.log(e);
+      }
+    }
+
+    var parseDefValue = function (defValue) {
+      switch (defValue) {
+        case '$today':
+          return moment().format("<%=locale.dateFormat%>");
+        case '$monthStart':
+          return moment().startOf('month').format("<%=locale.dateFormat%>");
+        case '$monthEnd':
+          return moment().endOf('month').format("<%=locale.dateFormat%>");
+        case '$weekStart':
+          return moment().startOf('isoweek').format("<%=locale.dateFormat%>");
+        case '$weekEnd':
+          return moment().endOf('isoweek').format("<%=locale.dateFormat%>");
+      }
+    };
+
+    function toLocalTZ (ctrl, fmt) {
+      if (ctrl.val()) {
+        if(ctrl.attr('to-local-tz') === 'true') {
+          var v = moment.utc(ctrl.val(), "<%=locale.dateTimeFormat%>").local();
+          ctrl.val(v.isValid() ? v.format("<%=locale.dateFormat%>") : '');
+        }
+      }
+    }
+
+    function getPreFilterValue(elem) {
+      var id = elem.attr('id') || '';
+      id = id.split('_');
+      var sheet = id[1];
+      var filter = id[2];
+      if (preFilters && preFilters[sheet] && preFilters[sheet][filter]) {
+        return preFilters[sheet][filter];
+      }
+      return null;
+    }
+
+    $(".fetch-param input").each(function (i, e) {
+      var elem = $(e);
+      var dv = getPreFilterValue(elem);
+      var needTz = dv;
+      dv = dv || (elem.data('defaultValue') ? parseDefValue(elem.data('defaultValue')) : null);
+
+      if (elem.hasClass('date')) {
+        elem.datetimepicker({
+          locale: "<%=locale.lang%>",
+          format: "<%=locale.dateFormat%>"
+        });
+        elem.val(dv ? dv : today);
+        if (needTz) {
+          toLocalTZ(elem);
+        }
+        //toLocalTZ(elem);
+      } else if (dv) {
+        elem.val(dv);
+      }
+    });
+
+    $(".range-filter .date").datetimepicker({
+      locale: "<%=locale.lang%>",
+      format: "<%=locale.dateFormat%>"
+    }).each(function () {
+      var nm = this.name;
+      var $this = $(this);
+      var rf = $this.closest('.range-filter');
+      var inputs = $('.date', rf);
+      if (inputs.length > 1) {
+        let since = $(inputs.get(0));
+        if (!since.val()) {
+          since.val(fmd);
+          //toLocalTZ(since);
+        } else {
+          toLocalTZ(since);
+        }
+        let till = $(inputs.get(1));
+        if (!till.val()) {
+          till.val(lmd);
+          //toLocalTZ(till);
+        } else {
+          toLocalTZ(till);
+        }
+      } else {
+        inputs.val(today);
+      }
+    });
+
+    $('.report-info-head').click(function () {
+      $(this).parent().toggleClass('active');
+    });
+
+    $(".apply-filters").click(function (e) {
+      var $this = $(this);
+      $this.closest('.bi-sheet').find(".sheet-message").hide();
+      var filters_id = $this.closest(".range-filters")[0].id;
+      var sheet_id = filters_id.replace('_range_filter', '');
+      reloadSheet.apply($('#' + sheet_id).get(0));
+    });
+
+    function initSelect2() {
+      let d = $.Deferred();
+      var $this = $(this)
+      var ajaxUrl = $this.data('filter') || $this.data('param');
+      if (!ajaxUrl) {
+        $this.select2({
+          dropdownAutoWidth: true
+        });
+        d.resolve($this);
+      } else {
+        $.get(ajaxUrl)
+          .done(function (data) {
+            var results = [];
+            if (data && data.length) {
+              for (var i = 0; i < data.length; i++) {
+                if (String(data[i]).toLowerCase() !== 'not') {
+                  results.push({
+                    id: String(data[i]),
+                    text: String(data[i])
+                  });
+                }
+              }
+            }
+            $this.select2({data: results, dropdownAutoWidth: true});
+            d.resolve($this);
+          })
+          .fail(function () {
+            d.reject(new Error('error loading filter for field'));
+          });
+      }
+      return d.promise();
+    }
+
+    var initSelectPromises = $.Deferred();
+    initSelectPromises.resolve();
+    initSelectPromises = initSelectPromises.promise();
+    $('.bi-sheets').find('select.select2').each(function () {
+      initSelectPromises = initSelectPromises
+        .then(function () {
+          return initSelect2.apply(this);
+        }.bind(this))
+        .then(function ($sl2) {
+          var pfv = getPreFilterValue($sl2);
+          if (pfv) {
+            if ($sl2.find("option").length > 1) {
+              $sl2.val(pfv).trigger('change');
+            } else {
+              var newOption = new Option(pfv, pfv, true, true);
+              $sl2.append(newOption).trigger('change');
+            }
+          }
+        });
+    });
+
+    var sheets = $('.aggregation-sheet').not('.floatThead-table');
+    sheets.sheet('init');
+
+    initSelectPromises
+      .always(function () {
+        if (sourcesReady) {
+          $('.bi-sheets').show();
+          sheets.each(function () {
+            reloadSheet.apply(this);
+          });
+          $('.pivot-sheet').ionPivot({locale: <%- JSON.stringify(locale)%>});
+        }
+        $('#bi-sheets-loader').hide();
+      })
+      .fail(function (e) {
+        console.log(e);
+      });
+  });
+</script>

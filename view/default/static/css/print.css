@@ -1,0 +1,39 @@
+
+@media print {
+  body {
+    background: #fff;
+    font-size: 90%;
+  }
+
+  body * {
+    visibility: hidden;
+  }
+
+  .printed-area, .printed-area * {
+    visibility: visible;
+  }
+
+  .printed-area {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+  }
+
+  #middle, #content > .panel {
+    position: static;
+  }
+
+  #content > .panel > .panel-body {
+    padding: 0;
+  }
+
+  h1 {
+    font-size:16px;
+    margin:20px 0 20px 0;
+  }
+
+  table th, table td {
+    padding: 5px !important;
+  }
+}

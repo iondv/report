@@ -1,0 +1,17 @@
+<%
+let id = `n_${menuNode.id.replace('.', '_')}`;
+let opened = isMenuOpened(menuNode, currPath[0]);
+let subPath = opened ? ((menuNode.itemType === 'section') ? currPath : currPath.slice(1)) : null;
+%>
+<% if (menuNode.nodes.length) { %>
+<div class="top-menu-children <%- opened ? 'active' : ''%>" data-id="<%=id%>">
+  <ul class="nav nav-list">
+  <% for (let childNode of menuNode.nodes){ %>
+  <%- partial("./menu_node.ejs", {
+    menuNode: childNode,
+    currPath: subPath
+  }) %>
+  <% } %>
+  </ul>
+</div>
+<% } %>

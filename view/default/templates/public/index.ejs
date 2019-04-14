@@ -1,0 +1,109 @@
+<html>
+<head>
+  <title>
+    <%=sheet.caption || sheet.name%>
+  </title>
+  <base id="baseUrl" href="<%=baseUrl%>">
+</head>
+<body>
+<script type="text/javascript">
+  var sheetData = <%-JSON.stringify(data)%>;
+</script>
+<% if (sheet.type === 'aggregation') { %>
+
+<style>
+  body {
+    font-family: Arial;
+    margin:0;
+  }
+
+  table.aggregation-sheet {
+    border-collapse: collapse;
+    color: black;
+    font-size: 13px;
+    width:100%;
+  }
+
+  table.aggregation-sheet tr.total {
+    font-weight: bolder;
+  }
+
+  table.aggregation-sheet th {
+    border-style: solid;
+    border-width: 1px;
+    border-color: gray;
+    padding: 5px;
+    font-weight: bold;
+    color: gray;
+  }
+
+  table.aggregation-sheet td {
+    border-style: solid;
+    border-width: 1px;
+    border-color: gray;
+    padding: 5px;
+  }
+
+  table.aggregation-sheet td.number {
+    text-align: right;
+  }
+
+  table.aggregation-sheet tr.total.alarm td {
+    /* color: #942a25; */
+    color: red;
+  }
+</style>
+<table id="<%=sheet.name%>" class="aggregation-sheet"
+       field-map="<%=JSON.stringify(sheet.fields)%>"
+       row-styles="<%=JSON.stringify(sheet.styles || {})%>">
+  <thead>
+  <%
+  sheet.header.forEach(function (row) {
+  %>
+  <tr>
+    <%
+    row.forEach(function (h) {
+    %>
+    <th rowspan="<%=h.rowSpan%>" colspan="<%=h.colSpan%>"><%=h.caption%></th>
+    <%
+    });
+    %>
+  </tr>
+  <%
+  });
+  %>
+  </thead>
+  <tbody>
+  </tbody>
+</table>
+<script src="<%= module %>/vendor/jquery/jquery.min.js"></script>
+<script type="text/javascript" src="<%= module %>/js/sheet<%= staticsSuffix %>.js"></script>
+<script type="text/javascript">
+  $(document).ready(function () {
+    $('.aggregation-sheet').sheet({method: 'init', data: sheetData}).sheet('reload');
+  });
+</script>
+
+<% } else { %>
+<div id="<%=sheet.name%>" class="pivot-sheet"
+     pivot-cols="<%=JSON.stringify(sheet.columns)%>"
+     pivot-rows="<%=JSON.stringify(sheet.rows)%>"
+     pivot-aggregations="<%=JSON.stringify(sheet.aggregations)%>"
+     pivot-formating="<%=JSON.stringify(sheet.formating || {})%>"
+     pivot-customizable="false"
+     pivot-captions="<%=JSON.stringify(sheet.captions)%>"
+></div>
+<script src="<%= module %>/vendor/jquery/jquery.min.js"></script>
+<script type="text/javascript" src="<%= module %>/vendor/pivottable/pivot.min.js"></script>
+<script type="text/javascript" src="<%= module %>/vendor/pivottable/pivot.ru.min.js"></script>
+<link rel="stylesheet" type="text/css" href="<%= module %>/vendor/pivottable/pivot.css">
+<script type="text/javascript" src="<%= module %>/js/pivot<%= staticsSuffix %>.js"></script>
+<script type="text/javascript">
+$(function () {
+  $('.pivot-sheet').ionPivot({data: sheetData, locale: <%- JSON.stringify(locale)%>}).ionPivot('reload');
+});
+</script>
+<% } %>
+<%- pageEndContent %>
+</body>
+</html>

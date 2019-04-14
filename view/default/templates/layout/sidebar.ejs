@@ -1,0 +1,36 @@
+<aside id="aside">
+  <nav id="sideBarNav">
+    <ul class="nav nav-list">
+      <%
+      function isOpened (mn, level) {
+        var ind = mn.id.lastIndexOf('@');
+        var name = ind !== -1 ? mn.id.substr(ind + 1) : mn.id;
+        //console.log('mn', name, 'level', level);
+        if (level) {
+          if (mn.itemType === 'section') {
+            for (var i = 0; i < mn.nodes.length; ++i) {
+              if (isOpened(mn.nodes[i], level)) {
+                return true;
+              }
+            }
+          } else {
+              return name === level;
+          }
+        }
+        return false;
+      }
+      var path = typeof node === 'string' ? node.split('@') : "/";
+      for (var i = 0; i < leftMenu.length; ++i) { %>
+      <%- partial("./layout/menu_node.ejs",{
+        menuNode: leftMenu[i],
+        isOpened: isOpened,
+        currPath: path
+      }) %>
+      <% } %>
+    </ul>
+  </nav>
+  <button id="moreMenuBtn">
+    <span class="glyphicon"></span><span class="glyphicon"></span>
+  </button>
+  <div id="aside-splitter" class="aside-splitter"></div>
+</aside>

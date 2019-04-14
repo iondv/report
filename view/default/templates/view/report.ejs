@@ -1,0 +1,330 @@
+<!-- view/report -->
+<% layout('../content') %>
+
+<% stylesheet(`${module}/vendor/pivottable/pivot.css`) -%>
+
+<script src="<%= module %>/vendor/jquery.floatThead/jquery.floatThead.min.js"></script>
+<script src="<%= module %>/js/sheet<%= staticsSuffix %>.js"></script>
+<script src="<%= module %>/vendor/pivottable/pivot.min.js"></script>
+<script src="<%= module %>/vendor/pivottable/pivot.ru.min.js"></script>
+<script src="<%= module %>/js/pivot<%= staticsSuffix %>.js"></script>
+
+<div class="panel panel-default list-container">
+  <div class="panel-body">
+    <%
+    var btnText = '';
+    var showSheets = false;
+    if (sourcesInfo) {
+      showSheets = true;
+      btnText = 'To update data source';
+    %>
+
+    <div class="report-info">
+      <div class="report-info-head text-primary">
+        <span class="glyphicon"></span>Building journal
+      </div>
+      <div class="report-info-body">
+        <div class="table-responsive">
+          <table class="table table-striped table-condensed" style="width:auto">
+            <thead>
+            <tr>
+              <th>Data source</th>
+              <th>Last build date</th>
+            </tr>
+            </thead>
+            <tbody>
+            <% sourcesInfo.sort(function (a, b) {return a.source.localeCompare(b.source);}) %>
+            <% sourcesInfo.forEach(function(info) { %>
+            <tr>
+              <td><%=info.source %></td>
+              <td class="text-center">
+                <%= info.buildFinished %> <%=info.ready ? '' : 'refresh'%>
+              </td>
+            </tr>
+            <% }); %>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+
+      <%
+    } else {
+      btnText = 'Prepare source data';
+    %>
+    <div class="info">
+      <div id="no-source-alert" class="alert alert-warning">
+        No initial data prepared
+      </div>
+    </div>
+    <% } %>
+
+    <button id="prepare_source" type="button" class="btn btn-primary mb30">
+      <%=btnText%>
+    </button>
+
+    <div id="progress" class="progress" style="display:none">
+      <div class="progress-bar progress-bar-info progress-bar-striped active"></div>
+    </div>
+    <div id="progress-info" class="progress-info mb40" style="display:none"></div>
+
+    <% if (sourcesInfo) { %>
+    <div id="bi-sheets-loader" class="bi-sheets-loader">
+      <span class="loader fa fa-refresh fa-spin"></span>
+      <span class="">Data loading</span>
+    </div>
+    <% } %>
+
+    <div class="bi-sheets" style="display:none;">
+      <% sheets.forEach(function (sheet) { %>
+      <div class="bi-sheet">
+        <h4 class="title"><%=sheet.caption%></h4>
+        <div class="content">
+          <%
+          switch (sheet.type) {
+            case 'list':
+            case 'aggregation': {
+          %>
+
+          <div id="<%=sheet.name%>_range_filter" class="range-filters clearfix">
+            <%-partial('export-tools', {sheet: sheet})%>
+            <% if (sheet.rangeFilters || sheet.params) { %>
+              <button class="apply-filters btn btn-primary apply pull-right" data-sheet="<%= sheet.name %>">
+                Apply
+              </button>
+            <% }
+              if (sheet.rangeFilters) {
+                for (let nm in sheet.rangeFilters) {
+                  if (sheet.rangeFilters.hasOwnProperty(nm)) {
+            %>
+              <div class="range-filter" range-inclusive="<%=sheet.rangeFilters[nm].inclusive%>">
+                <span><%=sheet.rangeFilters[nm].caption[0]%></span>&nbsp;
+                <%- partial('param-input', {nm: nm, param: sheet.rangeFilters[nm], sheet}) %>
+                <span><%=sheet.rangeFilters[nm].caption[1]%></span>&nbsp;
+                <%- partial('param-input', {nm: nm, param: sheet.rangeFilters[nm], sheet}) %>
+              </div>
+            <%    }
+                }
+              }
+
+              if (sheet.params) {
+                for (let nm in sheet.params) {
+                  if (sheet.params.hasOwnProperty(nm)) {
+            %>
+              <div class="fetch-param">
+                <span><%=sheet.params[nm].caption%></span>&nbsp;
+                <%- partial('param-input', {nm: nm, param: sheet.params[nm], sheet}) %>
+              </div>
+            <%    }
+                }
+              }
+            %>
+          </div>
+          <div class="sheet-pagination-wrapper clearfix" style="display: none;">
+            <div class="sheet-pagination">
+              <div class="input-group">
+                <select style="width: 100%;"></select>
+                <span class="input-group-addon">/</span>
+              </div>
+            </div>
+            <div class="sheet-total-count-wrapper">
+              <span>Total objects: </span><span class="sheet-total-count">0</span>
+            </div>
+          </div>
+          <div class="table-responsive table-fixed-height">
+            <table id="<%=sheet.name%>" class="aggregation-sheet table table-bordered table-hover table-striped table-condensed"
+                   fetch-url="<%=module%>/<%=mine.canonicalName()%>/<%=report.name()%>/<%=sheet.name%>/data"
+                   field-map="<%=JSON.stringify(sheet.fields)%>"
+                   range-filters="<%=JSON.stringify(sheet.rangeFilters || {})%>"
+                   fetch-params="<%=JSON.stringify(sheet.params || {})%>"
+                   row-styles="<%=JSON.stringify(sheet.styles || {})%>"
+                   page-size="<%= sheet.pageSize || 0 %>"
+                   data-need-filter-set="<%=!!(sheet.needFilterSet)%>"
+                   data-need-filter-msg="<%=sheet.needFilterMessage || ''%>"
+                   data-page="1">
+              <thead>
+              <%
+              for (let i = 0; i < sheet.fields.length; i++) {
+              if (sheet.fields[i].filter) {
+              %>
+              <tr class="filter">
+                <th colspan="<%= sheet.fields.length%>" class="text-gray">
+                  Table filters
+                </th>
+              </tr>
+              <tr class="filter">
+                  <% sheet.fields.forEach(function (f) { %>
+                <td<%-f.filter ? ' class="select"' : ''%>>
+                    <% if (f.filter) { %>
+                    <%if (Array.isArray(f.select)) {%>
+                        <select name="<%=f.field%>" class="form-control select2">
+                          <option value="__none__">not</option>
+                          <%f.select.forEach(s => {%>
+                          <option value="<%=s%>"><%=s%></option>
+                          <%});%>
+                        </select>
+                      <% } else if (typeof f.filter === 'object') { %>
+                    <select id="f_<%=sheet.name%>_<%=f.field%>" name="<%=f.field%>"
+                            class="form-control select2"
+                            data-filter="<%=module%>/<%=mine.canonicalName()%>/<%=report.name()%>/<%=sheet.name%>/<%=f.field%>/filter">
+                      <option value="__none__">not</option>
+                        </select>
+                    <%} else {%>
+                        <select id="f_<%=sheet.name%>_<%=f.field%>" name="<%=f.field%>" class="form-control select2">
+                          <option value="__none__">not</option>
+                        </select>
+                      <% } %>
+                  </td>
+                <%}});%>
+              </tr>
+              <%
+                break;
+              }
+              }
+              sheet.header.forEach(function (row) {
+              %>
+              <tr>
+                <%
+                row.forEach(function (h) {
+                %>
+                <th rowspan="<%=h.rowSpan%>" colspan="<%=h.colSpan%>"<%-h.align?' style="text-align:' + h.align + ';" ':''%>><%=h.caption%></th>
+                <%
+                });
+                %>
+              </tr>
+              <%
+              });
+              %>
+              </thead>
+              <tbody></tbody>
+            </table>
+          </div>
+          <%
+          } break;
+          case 'pivot': {
+          %>
+          <div id="<%= sheet.name %>_range_filter" class="range-filters clearfix">
+            <%-partial('export-tools', {sheet: sheet})%>
+            <% if (sheet.params) { %>
+              <button class="apply-filters btn btn-primary apply pull-right" data-sheet="<%= sheet.name %>">
+                Apply
+              </button>
+            <%    for (let nm in sheet.params) {
+                  if (sheet.params.hasOwnProperty(nm)) { %>
+              <div class="fetch-param">
+                <span><%=sheet.params[nm].caption%></span>&nbsp;
+                <%- partial('param-input', {nm: nm, param: sheet.params[nm], sheet}) %>
+              </div>
+            <%    }
+                }
+              } %>
+          </div>
+          <div id="<%=sheet.name%>" class="pivot-sheet"
+               fetch-url="<%=module%>/<%=mine.canonicalName()%>/<%=report.name()%>/<%=sheet.name%>/data"
+               pivot-cols="<%=JSON.stringify(sheet.columns)%>"
+               pivot-rows="<%=JSON.stringify(sheet.rows)%>"
+               pivot-data="<%=JSON.stringify(sheet.data)%>"
+               pivot-sorting="<%=JSON.stringify(sheet.sort)%>"
+               pivot-aggregations="<%=JSON.stringify(sheet.aggregations)%>"
+               pivot-formating="<%=JSON.stringify(sheet.formating || {})%>"
+               pivot-customizable="<%=sheet.customizable?'true':'false'%>"
+               pivot-hide-col-totals="<%=sheet.pivotHideColTotals?'true':'false'%>"
+               pivot-hide-row-totals="<%=sheet.pivotHideRowTotals?'true':'false'%>"
+               pivot-captions="<%=JSON.stringify(sheet.captions)%>"
+          ></div>
+          <%
+          } break;
+          }
+          %>
+        </div>
+      </div>
+      <%
+      });
+      %>
+    </div>
+
+    <div id="test"></div>
+  </div>
+</div>
+
+<% var reportFooter = resolveTpl('report_footer', null, true);
+  if (reportFooter) { %>
+<%-partial(reportFooter, {report})%>
+<% } %>
+
+<script>
+  var sourcesReady = <%=JSON.stringify(showSheets)%>;
+  function statusCheck() {
+    setTimeout(function(){
+      $.get("<%=module%>/<%=mine.canonicalName()%>/check", function (data) {
+        var $info = $('#progress-info').empty();
+        if (data.currentSource) {
+          $info.html('<span class="fa fa-refresh fa-spin mr5"></span> Preparing the data source <b>'+ data.currentSource.caption +'</b>');
+        }
+        var $progress = $('#progress');
+        $progress.find('.progress-bar').css('width', data.progress + '%').html(data.progress + '%');
+        if (data.progress < 100) {
+          var timeout = setTimeout(statusCheck, 2000);
+        } else {
+          messageCallout.success('Data mine Assembly completed.');
+          $progress.hide();
+          $info.hide();
+          $('.bi-sheets').show();
+          $('#prepare_source').show();
+          $('.aggregation-sheet').not('.floatThead-table').sheet('reload');
+          $('.pivot-sheet').ionPivot({locale: <%- JSON.stringify(locale)%>});
+        }
+      }).fail(processAjaxError);
+    }, 2000);
+  }
+
+  $("#prepare_source").click(function () {
+    var $alert = $('#no-source-alert').hide();
+    var $btn = $(this).hide();
+    $.get('<%=module%>/<%=mine.canonicalName()%>/build').done(function () {
+      messageCallout.info('Data mine Assembly started');
+      $('#progress').show().find('.progress-bar').css('width', '0').html('');
+      $('#progress-info').empty().show();
+      statusCheck();
+    }).fail(function () {
+      $btn.show();
+      $alert.show();
+      messageCallout.error('Failed to start data mine Assembly.');
+    }).fail(processAjaxError);
+  });
+</script>
+<%-partial('sheets-script')%>
+<script>
+  $(function () {
+    var $viewers = $('.table-fixed-height');
+    $(window).on('resize', function () {
+      $viewers.css('max-height', $(window).height() - 100);
+    }).trigger('resize');
+    $viewers.children('table').on('report-loaded', function (e, tc) {
+      setTimeout(function () {
+        $(this).floatThead('reflow');
+        $(window).resize();
+      }.bind(this), 0);
+      loadPagination.apply(this, [tc]);
+    }).floatThead({
+      scrollContainer: function ($table) {
+        return $table.parent();
+      }
+    });
+  });
+
+  $(function () {
+    $(window).resize(function () {
+      setTimeout(function () {
+        var $select = $('.bi-sheets').find('.filter .select2-container');
+        var $cell = $select.closest('td');
+        $select.width($cell.width());
+      }, 0);
+    });
+  });
+</script>
+
+<script src="<%=module%>/vendor/file-saver/FileSaver.min.js"></script>
+<script src="<%=module%>/vendor/pdfmake/build/pdfmake.js"></script>
+<script src="<%=module%>/vendor/pdfmake/build/vfs_fonts.js"></script>
+<script src="<%=module%>/js/export.js"></script>

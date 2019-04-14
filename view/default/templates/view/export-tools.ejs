@@ -1,0 +1,92 @@
+<!-- export-tools -->
+<div class="dropdown pull-right ml10" data-sheet="<%=sheet.name%>">
+  <button class="btn btn-default dropdown-toggle" type="button" data-toggle="dropdown">
+    Export
+    <span class="caret"></span>
+  </button>
+  <ul class="dropdown-menu">
+    <li>
+      <button format="excel" class="sheet-export">Excel</button>
+      <span style="display: none;"><i class="fa fa-spin fa-spinner"></i>Excel</span>
+      <a target="_blank" href="" title="Download export result" style="display:none;"><i
+          class="fa fa-file-excel-o"></i></a>
+    </li>
+    <li role="separator" class="divider"></li>
+    <li><a href="#pdf" class="sheet-export">PDF</a></li>
+    <li><a href="#html" class="sheet-export">HTML</a></li>
+    <li><a href="#print" class="sheet-export">Print</a></li>
+  </ul>
+</div>
+<script>
+
+  function checkExportStatus(btn, cb) {
+    var format = btn.attr('format');
+    $.get('<%=module%>/<%=mine.canonicalName()%>/<%=report.name()%>/<%=sheet.name%>/' + format + '/status',
+      function (result, status) {
+        if (status === 'success') {
+          btn.next().next().hide();
+          if (result.status === 'ready') {
+            btn.show();
+            btn.next().hide();
+            if (result.result) {
+              btn.next().next().attr(
+                'href',
+                '<%=module%>/<%=mine.canonicalName()%>/<%=report.name()%>/<%=sheet.name%>/' + format + '/download'
+              );
+              btn.next().next().css('display', 'inline');
+            }
+          } else {
+            btn.hide();
+            btn.next().show();
+          }
+          if (cb) {
+            cb(result.status);
+          }
+        }
+      }
+    );
+  }
+
+  function checkCycle(btn) {
+    var checker = setInterval(function () {
+      checkExportStatus(btn, function (status) {
+        if (status === 'ready') {
+          clearInterval(checker);
+        }
+      });
+    }, 5000);
+  }
+
+  $(function () {
+    $('button.sheet-export').each(function () {
+      var btn = $(this);
+      var format = btn.attr('format');
+      btn.click(function (e) {
+        e.stopPropagation();
+        e.preventDefault();
+        btn.hide();
+        btn.next().show();
+        btn.next().next().hide();
+        if (typeof reloadSheet == 'function') {
+          var $this = $(this);
+          var container = $this.closest(".dropdown");
+          var sheet_id = container[0] ? $(container[0]).data('sheet') : null;
+          if (!sheet_id) {
+            return;
+          }
+          reloadSheet.apply($('#' + sheet_id).get(0), [
+            '<%=module%>/<%=mine.canonicalName()%>/<%=report.name()%>/<%=sheet.name%>/' + format + '/start',
+            function () {
+              checkCycle(btn);
+            }
+          ]);
+        }
+      });
+      checkExportStatus(btn, function (status) {
+        if (status != 'ready') {
+          checkCycle(btn);
+        }
+      });
+    });
+  });
+</script>

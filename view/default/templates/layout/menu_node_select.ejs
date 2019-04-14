@@ -1,0 +1,27 @@
+<%
+    var id = `n_${menuNode.id.replace('.', '_')}`;
+    var selected = null;
+    var new_subPath = null;
+
+    if(subPath !== null) {
+      for (var i = 0; i < menuNode.nodes.length; i++) {
+        var opened = isOpened(menuNode.nodes[i], subPath[0]);
+        if(opened) {
+          selected = menuNode.nodes[i];
+          new_subPath = opened?((menuNode.nodes[i].itemType === 'section')?subPath:subPath.slice(1)):null;
+          break;
+        }
+      }
+    }
+%>
+<% if (menuNode.nodes.length > 0) { %>
+
+<li>
+  <select id="<%= id %>" class="menu-select" data-selection="<%= JSON.stringify(menuNode) %>" data-selected="<%= selected?selected.id:'' %>" style="width: 95%">
+      <option></option>
+  </select>
+</li>
+  <% if (selected !== null) { %>
+    <%- partial("./menu_node_select.ejs",{menuNode: selected, isOpened: isOpened, subPath: new_subPath}) %>
+  <% } %>
+<% } %>
