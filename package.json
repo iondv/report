@@ -1,17 +1,17 @@
 {
   "name": "report",
   "version": "2.0.0",
-  "homepage": "https://github.com/iondv/report",
+  "homepage": "https://git.iondv.ru/ION-MODULES/report",
   "bugs": {
-    "url": "https://github.com/iondv/report/issues"
+    "url": "https://ion-dv.atlassian.net/projects/MODREPORT/issues"
   },
-  "license": "Apache License 2.0",
+  "license": "LLC ION DV",
   "engines": {
     "ion": "3.0.0"
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/iondv/report.git"
+    "url": "https://git.iondv.ru/ION-MODULES/report.git"
   },
   "private": true,
   "scripts": {
