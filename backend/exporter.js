@@ -4,7 +4,6 @@ const Background = require('core/impl/Background');
 const path = require('path');
 const fs = require('fs');
 const mimes = require('mime-types');
-const cuid = require('cuid');
 const clone = require('clone');
 const mkdirp = require('mkdirp');
 const base64 = require('base64-js');
@@ -34,7 +33,9 @@ module.exports = function ReportExporter(options) {
   };
 
   this.run = function (params) {
-    let fn = cuid();
+    let mine = options.reportMeta.getDataMine(params.mine);
+    let sheet = mine.report(params.report).sheet(params.sheet);
+    let fn = sheet.caption;
     let uid = params.uid;
     let exportPath;
     if (options.exportPath) {
@@ -53,9 +54,6 @@ module.exports = function ReportExporter(options) {
         mkdirp(exportPath, err => err ? reject(err) : resolve());
       });
     });
-
-    let mine = options.reportMeta.getDataMine(params.mine);
-    let sheet = mine.report(params.report).sheet(params.sheet);
 
     if (params.env) {
       let opts = {};

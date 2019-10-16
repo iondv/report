@@ -66,6 +66,6 @@
 <script src="<%=module%>/vendor/select2/js/i18n/ru.js"></script>
 <script src="<%=module%>/js/common<%=staticsSuffix%>.js"></script>
 <%- scripts %>
-<%- pageEndContent %>
+<%- typeof pageEndContent !== 'undefined' ? pageEndContent : "" %>
 </body>
 </html>

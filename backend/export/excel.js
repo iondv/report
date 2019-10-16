@@ -230,8 +230,7 @@ module.exports = function (fn, options) {
     return rc;
   }
 
-  function renderRows(data, fields) {
-    let y = 2;
+  function renderRows(data, fields, y) {
     for (let i = 0; i < data.length; i++) {
       rowSpan(data[i], fields);
       y = y + renderRow(data[i], fields, 0, false, y);
@@ -294,7 +293,7 @@ module.exports = function (fn, options) {
           });
           r++;
         });
-        renderRows(data, options.sheet.fields, {});
+        renderRows(data, options.sheet.fields, r);
         for (let c in colWidths) {
           if (colWidths.hasOwnProperty(c)) {
             sheet.getColumn(parseInt(c, 10)).width = (colWidths[c] < 15) ? 15 : (colWidths[c] + 5);

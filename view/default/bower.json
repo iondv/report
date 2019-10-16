@@ -41,7 +41,7 @@
     "raphael": "~2.1.0",
     "slimScroll": "*",
     "sparklines": "*",
-    "select2": "~4.0.0",
+    "select2": "4.0.5",
     "store-js": "~1.3.20",
     "pivottable": "^2.7.0",
     "jquery.floatThead": "floatThead#^2.0.3"

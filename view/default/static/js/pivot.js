@@ -55,7 +55,7 @@
       options = options || {};
       options.locale = options.locale || {lang: 'en'};
       var _this = this;
-      var url = $this.attr('fetch-url');
+      var url = options.url || $this.attr('fetch-url');
       var cols = JSON.parse($this.attr('pivot-cols'));
       var rows = JSON.parse($this.attr('pivot-rows'));
       var vals = JSON.parse($this.attr('pivot-data'));
@@ -211,10 +211,11 @@
         if (options && options.params) {
           prms = options.params;
         }
+        var cb = function (dt) {
+          construct(dt);
+        };
         $.post(url, prms)
-          .done(function (dt) {
-            construct(dt);
-          })
+          .done(options.cb || cb)
           .fail(function () {
             console.error('не удалось получить данные по адресу ' + url);
           }).fail(processAjaxError);

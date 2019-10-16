@@ -5,7 +5,7 @@ const buildMenu = require('./menu').buildMenu;
 module.exports = function (req, res, scope) {
   res.render('view/404', {
     module: moduleName,
-    title: 'report not found',
+    title: 'Отчет не найден',
     pageCode: '404',
     node: `${req.params.mine}@${req.params.report}`,
     leftMenu: buildMenu(moduleName, scope.settings, scope.reportMeta, scope.metaRepo),

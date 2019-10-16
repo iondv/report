@@ -45,7 +45,9 @@
     if ($sheet.hasClass('pivot-sheet')) {
       $sheet.ionPivot({
         params: opts.params,
-        locale: <%- JSON.stringify(locale)%>
+        locale: <%- JSON.stringify(locale)%>,
+        url: url,
+        cb: cb
       });
     } else {
       $sheet.sheet({
@@ -253,7 +255,7 @@
             var results = [];
             if (data && data.length) {
               for (var i = 0; i < data.length; i++) {
-                if (String(data[i]).toLowerCase() !== 'not') {
+                if (String(data[i]).toLowerCase() !== 'нет') {
                   results.push({
                     id: String(data[i]),
                     text: String(data[i])
@@ -265,7 +267,7 @@
             d.resolve($this);
           })
           .fail(function () {
-            d.reject(new Error('error loading filter for field'));
+            d.reject(new Error('ошибка загрузки фильтра для поля'));
           });
       }
       return d.promise();

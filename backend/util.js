@@ -10,12 +10,13 @@ const strToDate = require('core/strToDate');
 
 // jshint maxcomplexity: 15
 
-function processColumns(columns, level, rows, fieldOrder, filter, params) {
+function processColumns(columns, level, rows, fieldOrder, filter, params, offsetx) {
   if (rows.length <= level) {
     rows[level] = [];
   }
 
-  columns.forEach((column) => {
+  columns.forEach((column, index) => {
+    column.offsetx = offsetx;
     column.colSpan = 1;
     if (params) {
       column.caption = column.caption.replace(/\{\$([^}]+)\}/, (a, b) => params.hasOwnProperty(b) ? params[b] : '');
@@ -31,7 +32,7 @@ function processColumns(columns, level, rows, fieldOrder, filter, params) {
     rows[level].push(column);
 
     if (column.columns) {
-      processColumns(column.columns, level + 1, rows, fieldOrder, filter, params);
+      processColumns(column.columns, level + 1, rows, fieldOrder, filter, params, index);
       column.colSpan = 0;
       column.columns.forEach(function (sc) {
         column.colSpan = column.colSpan + sc.colSpan;

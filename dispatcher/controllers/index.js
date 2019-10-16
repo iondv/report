@@ -43,7 +43,7 @@ module.exports = function (req, res) {
   res.render('view/index', {
     baseUrl: req.app.locals.baseUrl,
     module: moduleName,
-    title: 'IONDV. Reports',
+    title: 'Отчеты ION',
     pageCode: 'index',
     node: req.params.mine,
     leftMenu: buildMenu(moduleName, scope.settings, scope.reportMeta, scope.metaRepo),
