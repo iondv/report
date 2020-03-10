@@ -1,0 +1,81 @@
+<div class="modal user-filters-modal" id="userFiltersModal_<%=sheet.name%>"
+  data-mine="<%= mine.canonicalName() %>"
+  data-report="<%= report.name() %>"
+  data-sheet="<%= sheet.name %>"
+  data-format="<%= locale.dateFormat %>"
+  tabindex="-1" role="dialog" aria-labelledby="userFiltersModal_<%=sheet.name%>" aria-hidden="true">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title"><%=__('templates.default.view.userFilter.title')%></h4>
+      </div>
+      <div class="modal-body">
+        <div class="list-filter" data-table="ion_filter">
+
+          <input type="hidden" id="cls_filter" value="">
+
+          <div class="filter-tools">
+            <select class="select-filter form-control">
+              <option value disabled selected><%=__('templates.default.view.userFilter.select')%></option>
+            </select>
+            <div class="filter-tool-btns">
+              <button class="reset-filter btn btn-warning" title="<%=__('templates.default.view.userFilter.reset')%>">
+                <span class="glyphicon glyphicon-remove"></span>
+              </button>
+            </div>
+          </div>
+
+          <div class="filter-editor">
+
+            <%
+              if (sheet.rangeFilters) {
+                for (let nm in sheet.rangeFilters) {
+                  if (sheet.rangeFilters.hasOwnProperty(nm)) {
+            %>
+              <div class="range-filter" range-inclusive="<%=sheet.rangeFilters[nm].inclusive%>">
+                <span><%=sheet.rangeFilters[nm].caption[0]%></span>&nbsp;
+                <%- partial('param-input', {nm: nm, param: sheet.rangeFilters[nm], sheet}) %>
+                <span><%=sheet.rangeFilters[nm].caption[1]%></span>&nbsp;
+                <%- partial('param-input', {nm: nm, param: sheet.rangeFilters[nm], sheet}) %>
+              </div>
+            <%    }
+                }
+              }
+
+              if (sheet.params) {
+                for (let nm in sheet.params) {
+                  if (sheet.params.hasOwnProperty(nm)) {
+            %>
+              <div class="fetch-param">
+                <span><%=sheet.params[nm].caption%></span>&nbsp;
+                <%- partial('param-input', {nm: nm, param: sheet.params[nm], sheet}) %>
+              </div>
+            <%    }
+                }
+              }
+            %>
+
+            <div class="filter-controls">
+              <input type="text" class="form-control filter-name"
+                name="filterName" placeholder="<%=__('templates.default.view.userFilter.input')%>">
+              <button class="save-filter btn btn-info"
+                title="<%=__('templates.default.view.userFilter.saveFilterTitle')%>" type="button">
+                <%=__('templates.default.view.userFilter.saveFilter')%>
+              </button>
+              <button class="remove-filter btn btn-link text-danger ml10"
+                title="<%=__('templates.default.view.userFilter.removeFilter')%>" type="button">
+                <%=__('templates.default.view.userFilter.removeFilter')%>
+              </button>
+              <button class="assign-filter btn btn-primary" type="button">
+                <%=__('templates.default.view.userFilter.applyFilter')%>
+              </button>
+            </div>
+
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

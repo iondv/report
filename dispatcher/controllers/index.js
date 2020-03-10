@@ -3,9 +3,9 @@
  */
 'use strict';
 
-var buildMenu = require('../../backend/menu').buildMenu;
-var moduleName = require('../../module-name');
-var di = require('core/di');
+const buildMenu = require('../../backend/menu').buildMenu;
+const moduleName = require('../../module-name');
+const di = require('core/di');
 
 module.exports = function (req, res) {
   /**
@@ -43,7 +43,7 @@ module.exports = function (req, res) {
   res.render('view/index', {
     baseUrl: req.app.locals.baseUrl,
     module: moduleName,
-    title: 'Отчеты ION',
+    title: req.app.locals.__('backend.index.title'),
     pageCode: 'index',
     node: req.params.mine,
     leftMenu: buildMenu(moduleName, scope.settings, scope.reportMeta, scope.metaRepo),

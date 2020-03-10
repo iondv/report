@@ -7,7 +7,7 @@
   <base id="baseUrl" href="<%=baseUrl%>">
   <link href="<%= module %>/vendor/font-awesome-min/css/font-awesome.min.css" rel="stylesheet">
   <link href="<%= module %>/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css">
-  <link href="<%= module %>/vendor/bootstrap3-datepicker/css/datepicker.css" rel="stylesheet" type="text/css">
+  <link href="<%= module %>/vendor/bootstrap-datepicker/css/datepicker.css" rel="stylesheet" type="text/css">
   <link href="<%= module %>/vendor/bootstrap-daterangepicker/daterangepicker-bs3.css" rel="stylesheet">
   <link href="<%= module %>/vendor/icheck/skins/flat/grey.css" rel="stylesheet" type="text/css">
   <link href="<%= module %>/css/base<%= staticsSuffix %>.css" rel="stylesheet" type="text/css">
@@ -18,9 +18,16 @@
 
   <script src="<%= module %>/vendor/jquery/jquery.min.js"></script>
   <script src="<%= module %>/vendor/js-cookie/src/js.cookie.js"></script>
-  <script src="<%= module %>/vendor/store-js/store.min.js"></script>
+  <script src="<%= module %>/vendor/store/store.min.js"></script>
   <script src="<%= module %>/js/preload.js"></script>
+  <script src="i18n/handler.js"></script>
 </head>
+
+<script>
+  window.__ = function(id, params) {
+    return window.s('<%= module %>', id, params);
+  }
+</script>
 
 <body data-page="<%=pageCode %>">
 
@@ -53,13 +60,13 @@
 </script>
 <script src="<%=module%>/vendor/bootstrap/js/bootstrap.min.js"></script>
 <script src="<%=module%>/vendor/moment/moment-with-locales.min.js" type="text/javascript"></script>
-<script src="<%=module%>/vendor/slimScroll/jquery.slimscroll.min.js" type="text/javascript"></script>
+<script src="<%=module%>/vendor/jquery-slimscroll/jquery.slimscroll.min.js" type="text/javascript"></script>
 <script src="<%=module%>/vendor/icheck/icheck.min.js" type="text/javascript"></script>
 <script>
   var plugin_path = '<%=baseUrl%><%=module%>/js/plugins/';
 </script>
-<script src="<%=module%>/vendor/bootstrap3-datepicker/js/bootstrap-datepicker.js" type="text/javascript"></script>
-<script src="<%=module%>/vendor/bootstrap3-datepicker/js/locales/bootstrap-datepicker.ru.js" type="text/javascript"></script>
+<script src="<%=module%>/vendor/bootstrap-datepicker/js/bootstrap-datepicker.js" type="text/javascript"></script>
+<script src="<%=module%>/vendor/bootstrap-datepicker/js/locales/bootstrap-datepicker.ru.js" type="text/javascript"></script>
 <link href="<%= module %>/vendor/eonasdan-bootstrap-datetimepicker/build/css/bootstrap-datetimepicker.min.css" rel="stylesheet" type="text/css"/>
 <script src="<%=module%>/vendor/eonasdan-bootstrap-datetimepicker/build/js/bootstrap-datetimepicker.min.js" type="text/javascript"></script>
 <script src="<%=module%>/vendor/select2/js/select2.min.js"></script>

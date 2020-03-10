@@ -12,6 +12,8 @@ const processReport = require('../../backend/util').processReport;
 const infoPromise = require('../../backend/util').infoPromise;
 const moment = require('moment');
 const locale = require('locale');
+const __ = require('core/strings').unprefix('errors');
+const Errors = require('../../errors/backend');
 
 /* jshint maxstatements: 50, maxcomplexity: 30 */
 
@@ -33,7 +35,7 @@ module.exports = function (req, res) {
   }
   let builders = scope.settings.get(moduleName + '.mineBuilders') || {};
   if (!builders.hasOwnProperty(mine.namespace()) || !builders[mine.namespace()].hasOwnProperty(mine.name())) {
-    scope.sysLog.error('Не настроены сборщики источников данных для шахты "' + mine.name() + '"');
+    scope.sysLog.error(__(Errors.NO_BUILDERS, {mine: mine.name()}));
     return res.sendStatus(404);
   }
   builders = builders[mine.namespace()][mine.name()];
@@ -45,7 +47,7 @@ module.exports = function (req, res) {
 
   mine.sources().forEach(function (src) {
     if (!builders.hasOwnProperty(src.name)) {
-      scope.sysLog.warn('Не настроен сборщик для источника данных "' + mine.name() + '.' + src.name + '".');
+      scope.sysLog.warn(__(Errors.NO_BUILDERS_SRC, {mine: mine.name(), src: src.name}));
       return;
     }
     /**
@@ -53,7 +55,7 @@ module.exports = function (req, res) {
      */
     let b = scope[builders[src.name]];
     if (!b) {
-      scope.sysLog.warn('Не найден сборщик для источника "' + mine.name() + '.' + src.name + '".');
+      scope.sysLog.warn(__(Errors.NO_SRC, {mine: mine.name(), src: src.name}));
       return;
     }
     if (!getter) {

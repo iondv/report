@@ -5,6 +5,8 @@
 
 const moduleName = require('../../../module-name');
 const di = require('core/di');
+const __ = require('core/strings').unprefix('errors');
+const Errors = require('../../../errors/backend');
 
 /* jshint maxstatements: 50, maxcomplexity: 30 */
 
@@ -57,7 +59,7 @@ module.exports = function (req, res) {
         if (result && result.stream) {
           result.options((err, opts) => {
             if (err) {
-              return res.status(404).send('File not found!');
+              return res.status(404).send(__(Errors.FILE_NOT_FOUND));
             }
             result.stream((err, stream) => {
               res.status(200);
@@ -75,7 +77,7 @@ module.exports = function (req, res) {
             });
           });
         } else {
-          res.status(404).send('File not found!');
+          res.status(404).send(__(Errors.FILE_NOT_FOUND));
         }
       })
       .catch((err) => {

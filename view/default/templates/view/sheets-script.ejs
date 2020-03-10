@@ -1,3 +1,8 @@
+<%
+  const msg = {
+    error: __('templates.default.view.sheetsScript.error')
+  }
+%>
 <script language="JavaScript">
   function prepareVal(input) {
     var $input = $(input);
@@ -267,7 +272,7 @@
             d.resolve($this);
           })
           .fail(function () {
-            d.reject(new Error('ошибка загрузки фильтра для поля'));
+            d.reject(new Error(<%-JSON.stringify(msg.error)%>));
           });
       }
       return d.promise();

@@ -1,5 +1,5 @@
 <%if (param.select) { %>
-<select name="<%=nm%>"><%
+<select name="<%=nm%>" data-id="f_<%=sheet.name%>_<%=nm%>"><%
     for (let v in param.select) {
       if (param.select.hasOwnProperty(v)) {
         %><option value="<%=v%>"><%=param.select[v]%></option><%
@@ -7,15 +7,15 @@
     }
  %></select>
 <% } else if (param.selectQuery) { %>
-  <select id="f_<%=sheet.name%>_<%=nm%>" name="<%=nm%>"
+  <select data-id="f_<%=sheet.name%>_<%=nm%>" name="<%=nm%>"
           class="form-control select2"
           data-param="<%=module%>/<%=mine.canonicalName()%>/<%=report.name()%>/<%=sheet.name%>/<%=nm%>/param"
           style="width: 200px;">
-    <option value="__none__">нет</option>
+    <option value="__none__"><%=__('templates.default.view.paramInput.option.no')%></option>
   </select>
 <% } else { %>
 <input name="<%=nm%>"
-       id="f_<%=sheet.name%>_<%=nm%>"
+       data-id="f_<%=sheet.name%>_<%=nm%>"
        type="text"
        class="<%=param.format%> form-control"
        <%if (param.format === "date") {%>to-local-tz="<%=(!param.mode) ? 'true' : 'false'%>"

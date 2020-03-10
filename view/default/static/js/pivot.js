@@ -28,23 +28,23 @@
   }
   
   var aggregatorsNames = {
-    "count": "Кол-во",
-    "count Unique Values": "Кол-во уникальных",
-    "list Unique Values": "Список уникальных",
-    "sum": "Сумма",
-    "integer Sum": "Сумма целых",
-    "avg": "Среднее",
-    "min": "Минимум",
-    "max": "Максимум",
-    "sum over Sum": "Сумма по сумме",
-    "80% Upper Bound": "80% верхней границы",
-    "80% Lower Bound": "80% нижней границы",
-    "sum as Fraction of Total": "Доля по всему",
-    "sum as Fraction of Rows": "Доля по строке",
-    "sum as Fraction of Columns": "Доля по столбцу",
-    "count as Fraction of Total": "Кол-во по всему",
-    "count as Fraction of Rows": "Кол-во по строке",
-    "count as Fraction of Columns": "Кол-во по строке"
+    "count": __("js.pivot.agrname.count"),
+    "count Unique Values": __("js.pivot.agrname.countUniqueValues"),
+    "list Unique Values": __("js.pivot.agrname.listUniqueValues"),
+    "sum": __("js.pivot.agrname.sum"),
+    "integer Sum": __("js.pivot.agrname.integerSum"),
+    "avg": __("js.pivot.agrname.avg"),
+    "min": __("js.pivot.agrname.min"),
+    "max": __("js.pivot.agrname.max"),
+    "sum over Sum": __("js.pivot.agrname.sumOverSum"),
+    "80% Upper Bound": __("js.pivot.agrname.UpperBound"),
+    "80% Lower Bound": __("js.pivot.agrname.LowerBound"),
+    "sum as Fraction of Total": __("js.pivot.agrname.sumFractionTotal"),
+    "sum as Fraction of Rows": __("js.pivot.agrname.sumFractionRows"),
+    "sum as Fraction of Columns": __("js.pivot.agrname.sumFractionColumns"),
+    "count as Fraction of Total": __("js.pivot.agrname.countFractionTotal"),
+    "count as Fraction of Rows": __("js.pivot.agrname.countFractionRows"),
+    "count as Fraction of Columns": __("js.pivot.agrname.countFractionColumns")
   };
 
   $.fn.ionPivot = function (options) {
@@ -151,7 +151,7 @@
         }
       }
 
-      var agr = 'Кол-во';
+      var agr = __('js.pivot.agr');
       if (aggregations) {
         aggregations = JSON.parse(aggregations);
         if (aggregations && aggregations.length) {
@@ -217,7 +217,7 @@
         $.post(url, prms)
           .done(options.cb || cb)
           .fail(function () {
-            console.error('не удалось получить данные по адресу ' + url);
+            console.error(__('js.pivot.ajaxFail', {url: url}));
           }).fail(processAjaxError);
       }
     });

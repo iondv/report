@@ -423,7 +423,7 @@
       $.post(url, filter)
         .done(options.cb || cb)
         .fail(function () {
-          console.error('не удалось получить данные по адресу ' + url);
+          console.error(__('js.sheet.ajaxFail', {url: url}));
         }).fail(processAjaxError);
     } else {
       (options.cb || cb)([]);
@@ -475,7 +475,7 @@
           if (data === 'need-filter') {
             $('tbody', $this).html(
               '<tr><td colspan="' + fields.length + '">' +
-              (nfm || 'Пожалуйста, укажите параметры фильтра.') + '</td></tr>'
+              (nfm || __('js.sheet.filterParams')) + '</td></tr>'
             );
             $this.trigger('report-loaded');
             return;
