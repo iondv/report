@@ -6,17 +6,17 @@
   <meta name="viewport" content="width=device-width, maximum-scale=1, initial-scale=1, user-scalable=0">
   <base id="baseUrl" href="<%=baseUrl%>">
   <link href="<%= module %>/node_modules/font-awesome-min/css/font-awesome.min.css" rel="stylesheet">
-  <link href="<%= module %>/node_modules/bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css">
+  <link href="<%= module %>/node_modules/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet" type="text/css">
   <link href="<%= module %>/node_modules/bootstrap-datepicker/css/datepicker.css" rel="stylesheet" type="text/css">
   <link href="<%= module %>/node_modules/bootstrap-daterangepicker/daterangepicker-bs3.css" rel="stylesheet">
   <link href="<%= module %>/node_modules/icheck/skins/flat/grey.css" rel="stylesheet" type="text/css">
   <link href="<%= module %>/css/base<%= staticsSuffix %>.css" rel="stylesheet" type="text/css">
-  <link href="<%= module %>/node_modules/select2/css/select2.min.css" rel="stylesheet">
+  <link href="<%= module %>/node_modules/select2/dist/css/select2.min.css" rel="stylesheet">
   <%- stylesheets %>
   <link href="<%= module %>/css/common<%= staticsSuffix %>.css" rel="stylesheet">
   <link href="<%= module %>/css/print.css" rel="stylesheet">
 
-  <script src="<%= module %>/node_modules/jquery/jquery.min.js"></script>
+  <script src="<%= module %>/node_modules/jquery/dist/jquery.min.js"></script>
   <script src="<%= module %>/node_modules/js-cookie/src/js.cookie.js"></script>
   <script src="<%= module %>/node_modules/store/store.min.js"></script>
   <script src="<%= module %>/js/preload.js"></script>
@@ -58,8 +58,8 @@
 <script>
     $.widget.bridge('uibutton', $.ui.button);
 </script>
-<script src="<%=module%>/node_modules/bootstrap/js/bootstrap.min.js"></script>
-<script src="<%=module%>/node_modules/moment/moment-with-locales.min.js" type="text/javascript"></script>
+<script src="<%=module%>/node_modules/bootstrap/dist/js/bootstrap.min.js"></script>
+<script src="<%=module%>/node_modules/moment/min/moment-with-locales.min.js" type="text/javascript"></script>
 <script src="<%=module%>/node_modules/jquery-slimscroll/jquery.slimscroll.min.js" type="text/javascript"></script>
 <script src="<%=module%>/node_modules/icheck/icheck.min.js" type="text/javascript"></script>
 <script>
@@ -69,8 +69,8 @@
 <script src="<%=module%>/node_modules/bootstrap-datepicker/js/locales/bootstrap-datepicker.ru.js" type="text/javascript"></script>
 <link href="<%= module %>/node_modules/eonasdan-bootstrap-datetimepicker/build/css/bootstrap-datetimepicker.min.css" rel="stylesheet" type="text/css"/>
 <script src="<%=module%>/node_modules/eonasdan-bootstrap-datetimepicker/build/js/bootstrap-datetimepicker.min.js" type="text/javascript"></script>
-<script src="<%=module%>/node_modules/select2/js/select2.min.js"></script>
-<script src="<%=module%>/node_modules/select2/js/i18n/ru.js"></script>
+<script src="<%=module%>/node_modules/select2/dist/js/select2.min.js"></script>
+<script src="<%=module%>/node_modules/select2/dist/js/i18n/ru.js"></script>
 <script src="<%=module%>/js/common<%=staticsSuffix%>.js"></script>
 <%- scripts %>
 <%- typeof pageEndContent !== 'undefined' ? pageEndContent : "" %>
