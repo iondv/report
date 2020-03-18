@@ -76,7 +76,7 @@
   <tbody>
   </tbody>
 </table>
-<script src="<%= module %>/vendor/jquery/jquery.min.js"></script>
+<script src="<%= module %>/node_modules/jquery/dist/jquery.min.js"></script>
 <script type="text/javascript" src="<%= module %>/js/sheet<%= staticsSuffix %>.js"></script>
 <script type="text/javascript">
   $(document).ready(function () {
@@ -93,10 +93,10 @@
      pivot-customizable="false"
      pivot-captions="<%=JSON.stringify(sheet.captions)%>"
 ></div>
-<script src="<%= module %>/vendor/jquery/jquery.min.js"></script>
-<script type="text/javascript" src="<%= module %>/vendor/pivottable/pivot.min.js"></script>
-<script type="text/javascript" src="<%= module %>/vendor/pivottable/pivot.ru.min.js"></script>
-<link rel="stylesheet" type="text/css" href="<%= module %>/vendor/pivottable/pivot.css">
+<script src="<%= module %>/node_modules/jquery/dist/jquery.min.js"></script>
+<script type="text/javascript" src="<%= module %>/node_modules/pivottable/dist/pivot.min.js"></script>
+<script type="text/javascript" src="<%= module %>/node_modules/pivottable/dist/pivot.ru.min.js"></script>
+<link rel="stylesheet" type="text/css" href="<%= module %>/node_modules/pivottable/dist/pivot.css">
 <script type="text/javascript" src="<%= module %>/js/pivot<%= staticsSuffix %>.js"></script>
 <script type="text/javascript">
 $(function () {
