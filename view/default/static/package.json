@@ -3,8 +3,8 @@
     "version": "0.0.3",
     "description": "Frontend packages for module iondv. report",
     "repository": {
-      "type": "git",
-      "url": "https://github.com/iondv/report.git"
+        "type": "git",
+        "url": "https://github.com/iondv/report.git"
     },
     "license": "Apache-2.0",
     "vendorDir": "./vendor",
@@ -68,9 +68,5 @@
         "jquery-ui": "git+https://git.iondv.ru/node-modules/jquery-ui.git",
         "jquery.floatThead": "git+https://git.iondv.ru/node-modules/jquery.floatthead"
     },
-    "test": {
-        
-        
-        
-    }
+    "test": {}
 }

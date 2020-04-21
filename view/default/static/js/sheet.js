@@ -172,7 +172,7 @@
     if (styles) {
       for (let classificator in styles) {
         if (styles.hasOwnProperty(classificator) && row.hasOwnProperty(classificator)) {
-          if (styles[classificator].hasOwnProperty(row[classificator]) && 
+          if (styles[classificator].hasOwnProperty(row[classificator]) &&
             cls.indexOf(styles[classificator][row[classificator]]) < 0) {
             cls.push(styles[classificator][row[classificator]]);
           }

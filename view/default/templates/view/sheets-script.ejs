@@ -16,7 +16,8 @@
     var rf = {};
     var params = {};
     var paramTypes = {};
-    $('.range-filter, .fetch-param', $sheet.closest('.bi-sheet')).each(function () {
+    var panels = $('.range-filters-inputs .range-filter, .range-filters-inputs .fetch-param', $sheet.closest('.bi-sheet'));
+    panels.each(function () {
       var inclusive = $(this).attr("range-inclusive");
       var inputs = $(':input', this);
       if (inputs.length > 1) {
