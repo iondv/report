@@ -11,7 +11,6 @@ const router = route();
 const ejsLocals = require('ejs-locals');
 const di = require('core/di');
 const config = require('./config');
-const rootConfig = require('../../config');
 const moduleName = require('./module-name');
 const dispatcher = require('./dispatcher');
 const staticRouter = require('lib/util/staticRouter');
@@ -22,15 +21,12 @@ const alias = require('core/scope-alias');
 const sysMenuCheck = require('lib/util/sysMenuCheck');
 const lastVisit = require('lib/last-visit');
 const viewPathResolver = require('lib/util/viewResolver');
-const i18nSetup = require('core/i18n-setup');
 const errorSetup = require('core/error-setup');
 const strings = require('core/strings');
+const {load} = require('core/i18n');
 const isProduction = process.env.NODE_ENV === 'production';
 
-const lang = config.lang || rootConfig.lang || 'ru';
-const i18nDir = path.join(__dirname, 'i18n');
-errorSetup(lang, i18nDir);
-i18nSetup(lang, config.i18n || i18nDir, moduleName);
+errorSetup(path.join(__dirname, 'strings'));
 
 router.get('/public/:mine/:report/:sheet', dispatcher.pubSheet);
 router.get('/public/:mine/:report/:sheet/:template', dispatcher.pubSheet);
@@ -54,8 +50,6 @@ module.exports = app;
 app.locals.sysTitle = config.sysTitle;
 app.locals.staticsSuffix = process.env.ION_ENV === 'production' ? '.min' : '';
 app.locals.resolveTpl = viewPathResolver(app);
-app.locals.s = strings.s;
-app.locals.__ = (str, params) => strings.s(moduleName, str, params);
 
 app.use('/' + moduleName, express.static(path.join(__dirname, 'view/static')));
 
@@ -63,23 +57,21 @@ app.engine('ejs', ejsLocals);
 app.set('view engine', 'ejs');
 
 app._init = function () {
-  return di(
+  return load(path.join(__dirname, 'i18n'))
+    .then(di(
       moduleName,
-    extendDi(moduleName, config.di),
+      extendDi(moduleName, config.di),
       {
         module: app
       },
       'app',
       [],
       'modules/' + moduleName)
+    )
     .then(scope => alias(scope, scope.settings.get(moduleName + '.di-alias')))
     .then((scope) => {
       const staticOptions = isProduction ? scope.settings.get('staticOptions') : undefined;
       try {
-        let themePath = scope.settings.get(moduleName + '.theme') || config.theme || 'default';
-        themePath = theme.resolve(__dirname, themePath);
-        const themeI18n = path.join(themePath, 'i18n');
-        i18nSetup(lang, themeI18n, moduleName, scope.sysLog);
         theme(
           app,
           moduleName,
