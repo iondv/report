@@ -27,6 +27,9 @@ const {load} = require('core/i18n');
 const isProduction = process.env.NODE_ENV === 'production';
 
 errorSetup(path.join(__dirname, 'strings'));
+strings.registerBase('backend', require('./strings/backend'));
+strings.registerBase('frontend', require('./strings/frontend-scripts'));
+strings.registerBase('tpl', require('./strings/templates-default'));
 
 router.get('/public/:mine/:report/:sheet', dispatcher.pubSheet);
 router.get('/public/:mine/:report/:sheet/:template', dispatcher.pubSheet);
