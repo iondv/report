@@ -1,4 +1,4 @@
-const codes = require('../../../errors/backend');
+const codes = require('../../errors/backend');
 const {w: t} = require('core/i18n');
 
 module.exports = {

@@ -61,7 +61,7 @@ app.set('view engine', 'ejs');
 
 app._init = function () {
   return load(path.join(__dirname, 'i18n'))
-    .then(di(
+    .then(() => di(
       moduleName,
       extendDi(moduleName, config.di),
       {
@@ -74,6 +74,7 @@ app._init = function () {
     .then(scope => alias(scope, scope.settings.get(moduleName + '.di-alias')))
     .then((scope) => {
       const staticOptions = isProduction ? scope.settings.get('staticOptions') : undefined;
+      const themePath = scope.settings.get(moduleName + '.theme') || config.theme || 'default';
       try {
         theme(
           app,
