@@ -22,15 +22,15 @@ const alias = require('core/scope-alias');
 const sysMenuCheck = require('lib/util/sysMenuCheck');
 const lastVisit = require('lib/last-visit');
 const viewPathResolver = require('lib/util/viewResolver');
-const i18nSetup = require('core/i18n-setup');
-const errorSetup = require('core/error-setup');
+// const i18nSetup = require('core/i18n-setup'); -----------------------------------
+// const errorSetup = require('core/error-setup'); ВРЕМЕННЫЙ ФИКС ПОД IONCORE-648
 const strings = require('core/strings');
 const isProduction = process.env.NODE_ENV === 'production';
 
 const lang = config.lang || rootConfig.lang || 'ru';
-const i18nDir = path.join(__dirname, 'i18n');
-errorSetup(lang, i18nDir);
-i18nSetup(lang, config.i18n || i18nDir, moduleName);
+// const i18nDir = path.join(__dirname, 'i18n');
+// errorSetup(lang, i18nDir);                           ВРЕМЕННЫЙ ФИКС ПОД IONCORE-648
+// i18nSetup(lang, config.i18n || i18nDir, moduleName); ------------------------------
 
 router.get('/public/:mine/:report/:sheet', dispatcher.pubSheet);
 router.get('/public/:mine/:report/:sheet/:template', dispatcher.pubSheet);
@@ -78,8 +78,8 @@ app._init = function () {
       try {
         let themePath = scope.settings.get(moduleName + '.theme') || config.theme || 'default';
         themePath = theme.resolve(__dirname, themePath);
-        const themeI18n = path.join(themePath, 'i18n');
-        i18nSetup(lang, themeI18n, moduleName, scope.sysLog);
+        // const themeI18n = path.join(themePath, 'i18n');
+        // i18nSetup(lang, themeI18n, moduleName, scope.sysLog);
         theme(
           app,
           moduleName,
