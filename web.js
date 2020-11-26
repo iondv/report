@@ -94,11 +94,6 @@ app._init = function () {
           app.use('/' + moduleName, statics);
         }
         scope.auth.bindAuth(app, moduleName, {auth: false});
-        app.use((req, res, next) => {
-          const user = scope.auth.getUser(req);
-          res.locals.__ = (s, p) => strings.s(moduleName, s, p, user && user.language());
-          next();
-        });
         app.use('/' + moduleName, sysMenuCheck(scope, app, moduleName));
         app.use('/' + moduleName, router);
       } catch (err) {
