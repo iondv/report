@@ -413,12 +413,12 @@ if (window.Inputmask) {
     email: {
       definitions: {
         "*": {
-          validator: "[а-яА-Я0-9A-Za-z!#$%&'*+/=?^_`{|}~-]",
+          validator: "[\w!#$%&'*+/=?^_`{|}~-]",
           cardinality: 1,
           casing: "lower"
         },
         "-": {
-          validator: "[а-яА-Я0-9A-Za-z-]",
+          validator: "[\w-]",
           cardinality: 1,
           casing: "lower"
         }

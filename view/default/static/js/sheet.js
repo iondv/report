@@ -218,7 +218,7 @@
           let f = $('#f_' + $this.attr('id') + '_' + fields[i].field);
           let v = f.val();
           f.find('option').remove();
-          f.append(new Option('нет', '__none__', false, v == '__none__'));
+          f.append(new Option('none', '__none__', false, v == '__none__'));
           for (let j = 0; j < fields[i].filterValues.length; j++) {
             let newOption = new Option(fields[i].filterValues[j], fields[i].filterValues[j], false, v == fields[i].filterValues[j]);
             f.append(newOption);

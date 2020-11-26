@@ -5,7 +5,7 @@
     event.preventDefault();
     var $a = $(this);
     var $sheet = $a.closest('.bi-sheet');
-    var title = $sheet.find('.title').html() || 'Отчет';
+    var title = $sheet.find('.title').html() || 'Report';
     var $table = $sheet.find('.table-responsive').children('table');
     $table.floatThead('destroy');
     var $target = $('<div><h1>' + title + '</h1>'
