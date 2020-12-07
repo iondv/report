@@ -84,7 +84,7 @@ module.exports = function (req, res) {
 
   if (builder) {
     builder
-      .then(() => scope.sysLog.log(req.app.locals.__('backend.build.success', {mine: mine.canonicalName()})))
+      .then(() => scope.sysLog.log(req.locals.t('Data %mine', {mine: mine.canonicalName()})))
       .catch((err) => {
         req.session.mineBuilds[mine.canonicalName()] = mine.sources().length;
         scope.sysLog.error(err);
