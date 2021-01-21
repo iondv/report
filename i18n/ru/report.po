@@ -2,24 +2,32 @@
 # Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
 # This file is distributed under the same license as the PACKAGE package.
 # FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
-# 
+#
 #: strings/frontend-scripts.js:13
 #, fuzzy
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-01-20 07:35+0000\n"
+"POT-Creation-Date: 2021-01-21 05:07+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: \n"
 "MIME-Version: 1.0\n"
-"Content-Type: text/plain; charset=utf-8\n"
+"Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 
 #: backend/pnf.js:9
 msgid "Report not found"
+msgstr ""
+
+#: dispatcher/controllers/index.js:46
+msgid "ION Reports"
+msgstr ""
+
+#: dispatcher/controllers/build.js:87
+msgid "Data %mine"
 msgstr ""
 
 #: lib/import.js:57
@@ -40,6 +48,19 @@ msgstr ""
 #: lib/import.js:120
 #, javascript-format
 msgid "Importing report module meta model from %s"
+msgstr ""
+
+#: lib/impl/DsReportMetaRepository.js:216
+msgid "Navigation node namespace not specified!"
+msgstr ""
+
+#: lib/impl/StdMineBuilder.js:68
+#, javascript-format
+msgid "Syntax error in aggregation expression %s"
+msgstr ""
+
+#: lib/impl/StdMineBuilder.js:366
+msgid "Data source forming logic not specified."
 msgstr ""
 
 #: lib/rebuilder.js:31
@@ -360,4 +381,20 @@ msgstr ""
 
 #: strings/templates-default.js:44
 msgid "Apply filter"
+msgstr ""
+
+#: strings/errors/backend.js:5
+msgid "Builders for data mine \"%mine\" are not set up"
+msgstr ""
+
+#: strings/errors/backend.js:6
+msgid "Builder for data source \"%mine.%src\" is not set up."
+msgstr ""
+
+#: strings/errors/backend.js:7
+msgid "Builder for data source \"%mine.%src\" not found."
+msgstr ""
+
+#: strings/errors/backend.js:8
+msgid "File not found!"
 msgstr ""
