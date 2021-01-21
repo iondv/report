@@ -1,0 +1,363 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+# 
+#: strings/frontend-scripts.js:13
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2021-01-20 07:35+0000\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: backend/pnf.js:9
+msgid "Report not found"
+msgstr ""
+
+#: lib/import.js:57
+#, javascript-format
+msgid "Writing data mine %s to database."
+msgstr ""
+
+#: lib/import.js:72 lib/import.js:102
+#, javascript-format
+msgid "Report module meta model directory %s not found"
+msgstr ""
+
+#: lib/import.js:87
+#, javascript-format
+msgid "Writing navigation node %s to database."
+msgstr ""
+
+#: lib/import.js:120
+#, javascript-format
+msgid "Importing report module meta model from %s"
+msgstr ""
+
+#: lib/rebuilder.js:31
+#, javascript-format
+msgid "Data source %s.%s build started"
+msgstr ""
+
+#: lib/rebuilder.js:37
+#, javascript-format
+msgid "Data source %s.%s build complete"
+msgstr ""
+
+#: strings/frontend-scripts.js:4
+msgid "Mb"
+msgstr ""
+
+#: strings/frontend-scripts.js:5
+msgid "Kb"
+msgstr ""
+
+#: strings/frontend-scripts.js:6
+msgid "byte"
+msgstr ""
+
+#: strings/frontend-scripts.js:7
+msgid "Wait..."
+msgstr ""
+
+#: strings/frontend-scripts.js:8
+msgid "Search:"
+msgstr ""
+
+#: strings/frontend-scripts.js:9
+msgid "Show by _MENU_"
+msgstr ""
+
+#: strings/frontend-scripts.js:10
+msgid "Records from _START_ to _END_ of _TOTAL_ records"
+msgstr ""
+
+#: strings/frontend-scripts.js:11
+msgid "Records from 0 to 0 of 0 records"
+msgstr ""
+
+#: strings/frontend-scripts.js:12
+msgid "(total _MAX_)"
+msgstr ""
+
+#: strings/frontend-scripts.js:14 strings/templates-default.js:28
+msgid "Loading..."
+msgstr ""
+
+#: strings/frontend-scripts.js:15
+msgid "No records."
+msgstr ""
+
+#: strings/frontend-scripts.js:16
+msgid "Table has no data"
+msgstr ""
+
+#: strings/frontend-scripts.js:17
+msgid "<<"
+msgstr ""
+
+#: strings/frontend-scripts.js:18
+msgid "<"
+msgstr ""
+
+#: strings/frontend-scripts.js:19
+msgid ">"
+msgstr ""
+
+#: strings/frontend-scripts.js:20
+msgid ">>"
+msgstr ""
+
+#: strings/frontend-scripts.js:21
+msgid ": activate for sorting by ascending order"
+msgstr ""
+
+#: strings/frontend-scripts.js:22 strings/frontend-scripts.js:41
+msgid "failed to get data from %url"
+msgstr ""
+
+#: strings/frontend-scripts.js:23
+msgid "Quan"
+msgstr ""
+
+#: strings/frontend-scripts.js:24
+msgid "Count"
+msgstr ""
+
+#: strings/frontend-scripts.js:25
+msgid "Count unique"
+msgstr ""
+
+#: strings/frontend-scripts.js:26
+msgid "List unique"
+msgstr ""
+
+#: strings/frontend-scripts.js:27
+msgid "Sum"
+msgstr ""
+
+#: strings/frontend-scripts.js:28
+msgid "Sum of integer"
+msgstr ""
+
+#: strings/frontend-scripts.js:29
+msgid "Average"
+msgstr ""
+
+#: strings/frontend-scripts.js:30
+msgid "Minimum"
+msgstr ""
+
+#: strings/frontend-scripts.js:31
+msgid "Maximum"
+msgstr ""
+
+#: strings/frontend-scripts.js:32
+msgid "Sum by sum"
+msgstr ""
+
+#: strings/frontend-scripts.js:33
+#, javascript-format
+msgid "80% of roof"
+msgstr ""
+
+#: strings/frontend-scripts.js:34
+#, javascript-format
+msgid "80% of floor"
+msgstr ""
+
+#: strings/frontend-scripts.js:35
+msgid "Total sum"
+msgstr ""
+
+#: strings/frontend-scripts.js:36
+msgid "Row sum"
+msgstr ""
+
+#: strings/frontend-scripts.js:37
+msgid "Column sum"
+msgstr ""
+
+#: strings/frontend-scripts.js:38
+msgid "Total count"
+msgstr ""
+
+#: strings/frontend-scripts.js:39
+msgid "Count in row"
+msgstr ""
+
+#: strings/frontend-scripts.js:40
+msgid "Count in column"
+msgstr ""
+
+#: strings/frontend-scripts.js:42
+msgid "Please specify filter options."
+msgstr ""
+
+#: strings/frontend-scripts.js:43 strings/templates-default.js:38
+msgid "Select filter..."
+msgstr ""
+
+#: strings/templates-default.js:4
+msgid "Home"
+msgstr ""
+
+#: strings/templates-default.js:5
+msgid "Page not found"
+msgstr ""
+
+#: strings/templates-default.js:6
+msgid "We could not find page you are looking for."
+msgstr ""
+
+#: strings/templates-default.js:7
+msgid "Server error"
+msgstr ""
+
+#: strings/templates-default.js:8
+msgid "Something went wrong"
+msgstr ""
+
+#: strings/templates-default.js:9
+msgid "We are working on fixing this error right now."
+msgstr ""
+
+#: strings/templates-default.js:10
+msgid "Search..."
+msgstr ""
+
+#: strings/templates-default.js:11
+msgid "Version"
+msgstr ""
+
+#: strings/templates-default.js:12
+msgid "Copyright"
+msgstr ""
+
+#: strings/templates-default.js:13
+msgid "Exit"
+msgstr ""
+
+#: strings/templates-default.js:14
+msgid "User avatar"
+msgstr ""
+
+#: strings/templates-default.js:15
+msgid "admin panel"
+msgstr ""
+
+#: strings/templates-default.js:16
+msgid "No reports set up for this link"
+msgstr ""
+
+#: strings/templates-default.js:17
+msgid "Export"
+msgstr ""
+
+#: strings/templates-default.js:18
+msgid "Download export results"
+msgstr ""
+
+#: strings/templates-default.js:19
+msgid "Print"
+msgstr ""
+
+#: strings/templates-default.js:20
+msgid "none"
+msgstr ""
+
+#: strings/templates-default.js:21
+msgid "Builds journal"
+msgstr ""
+
+#: strings/templates-default.js:22
+msgid "Data source"
+msgstr ""
+
+#: strings/templates-default.js:23
+msgid "Last build date"
+msgstr ""
+
+#: strings/templates-default.js:24
+msgid "refreshing"
+msgstr ""
+
+#: strings/templates-default.js:25
+msgid "Reload data source"
+msgstr ""
+
+#: strings/templates-default.js:26
+msgid "Prepare data source"
+msgstr ""
+
+#: strings/templates-default.js:27
+msgid "Data source not ready"
+msgstr ""
+
+#: strings/templates-default.js:29
+msgid "Apply"
+msgstr ""
+
+#: strings/templates-default.js:30
+msgid "Table filters"
+msgstr ""
+
+#: strings/templates-default.js:31
+msgid "no"
+msgstr ""
+
+#: strings/templates-default.js:32
+msgid "Data source is preparing"
+msgstr ""
+
+#: strings/templates-default.js:33
+msgid "Data mine build complete."
+msgstr ""
+
+#: strings/templates-default.js:34
+msgid "Data mine build started."
+msgstr ""
+
+#: strings/templates-default.js:35
+msgid "Failed to start data mine build."
+msgstr ""
+
+#: strings/templates-default.js:36
+msgid "Proceed"
+msgstr ""
+
+#: strings/templates-default.js:37
+msgid "Report filter"
+msgstr ""
+
+#: strings/templates-default.js:39
+msgid "Reset filter"
+msgstr ""
+
+#: strings/templates-default.js:40
+msgid "Specify filter name..."
+msgstr ""
+
+#: strings/templates-default.js:41
+msgid "Save"
+msgstr ""
+
+#: strings/templates-default.js:42
+msgid "Save filter"
+msgstr ""
+
+#: strings/templates-default.js:43
+msgid "Delete filter"
+msgstr ""
+
+#: strings/templates-default.js:44
+msgid "Apply filter"
+msgstr ""
