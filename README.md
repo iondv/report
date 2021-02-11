@@ -13,7 +13,7 @@ This page in [Russian](/README_RU.md)
 or microservices based on metadata and individual modules. Framework is a part of 
 instrumental digital platform to create enterprise 
 (ERP) apps. This platform consists of the following open-source components: the [IONDV. Framework](https://github.com/iondv/framework), the
-[modules](https://github.com/topics/iondv-module) и ready-made applications expanding it
+[modules](https://github.com/topics/iondv-module) and ready-made applications expanding it
 functionality, visual development environment [Studio](https://github.com/iondv/studio) to create metadata for the app.
 
 * For more details, see [IONDV. Framework site](https://iondv.com). 
