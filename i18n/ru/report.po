@@ -9,9 +9,9 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2021-01-21 05:07+0000\n"
-"PO-Revision-Date: 2021-02-10 04:40+0000\n"
+"PO-Revision-Date: 2021-02-17 08:10+0000\n"
 "Last-Translator: Alena Kremenetskaya <alena.kremenetskaya@mail.ru>\n"
-"Language-Team: Russian <http://weblate.iondv.com/projects/iondv-framework/"
+"Language-Team: Russian <http://weblate.iondv.ru/projects/iondv-framework/"
 "report/ru/>\n"
 "Language: ru\n"
 "MIME-Version: 1.0\n"
@@ -232,11 +232,11 @@ msgstr ""
 
 #: strings/templates-default.js:4
 msgid "Home"
-msgstr ""
+msgstr "Главная страница"
 
 #: strings/templates-default.js:5
 msgid "Page not found"
-msgstr ""
+msgstr "Страница не найдена"
 
 #: strings/templates-default.js:6
 msgid "We could not find page you are looking for."
@@ -268,7 +268,7 @@ msgstr ""
 
 #: strings/templates-default.js:13
 msgid "Exit"
-msgstr ""
+msgstr "Выход"
 
 #: strings/templates-default.js:14
 msgid "User avatar"
@@ -372,7 +372,7 @@ msgstr ""
 
 #: strings/templates-default.js:41
 msgid "Save"
-msgstr ""
+msgstr "Сохранить"
 
 #: strings/templates-default.js:42
 msgid "Save filter"
