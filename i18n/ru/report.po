@@ -4,22 +4,22 @@
 # FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
 #
 #: strings/frontend-scripts.js:13
-msgid ""
-msgstr ""
-"Project-Id-Version: PACKAGE VERSION\n"
-"Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-01-21 05:07+0000\n"
-"PO-Revision-Date: 2021-02-17 08:10+0000\n"
-"Last-Translator: Alena Kremenetskaya <alena.kremenetskaya@mail.ru>\n"
-"Language-Team: Russian <http://weblate.iondv.ru/projects/iondv-framework/"
-"report/ru/>\n"
-"Language: ru\n"
-"MIME-Version: 1.0\n"
-"Content-Type: text/plain; charset=UTF-8\n"
-"Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=3; plural=n%10==1 && n%100!=11 ? 0 : n%10>=2 && n"
-"%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2;\n"
-"X-Generator: Weblate 4.4.2\n"
+#msgid ""
+#msgstr ""
+#"Project-Id-Version: PACKAGE VERSION\n"
+#"Report-Msgid-Bugs-To: \n"
+#"POT-Creation-Date: 2021-01-21 05:07+0000\n"
+#"PO-Revision-Date: 2021-02-19 20:17+0000\n"
+#"Last-Translator: Alena Kremenetskaya <alena.kremenetskaya@mail.ru>\n"
+#"Language-Team: Russian <http://weblate.iondv.ru/projects/iondv-framework/"
+#"report/ru/>\n"
+#"Language: ru\n"
+#"MIME-Version: 1.0\n"
+#"Content-Type: text/plain; charset=UTF-8\n"
+#"Content-Transfer-Encoding: 8bit\n"
+#"Plural-Forms: nplurals=3; plural=n%10==1 && n%100!=11 ? 0 : n%10>=2 && n"
+#"%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2;\n"
+#"X-Generator: Weblate 4.4.2\n"
 
 #: backend/pnf.js:9
 msgid "Report not found"
@@ -27,208 +27,208 @@ msgstr "Отчет не найден"
 
 #: dispatcher/controllers/index.js:46
 msgid "ION Reports"
-msgstr ""
+msgstr "ION Отчеты"
 
 #: dispatcher/controllers/build.js:87
 msgid "Data %mine"
-msgstr ""
+msgstr "Данные %mine"
 
 #: lib/import.js:57
 #, javascript-format
 msgid "Writing data mine %s to database."
-msgstr ""
+msgstr "Запись источника данных %s в базу данных."
 
 #: lib/import.js:72 lib/import.js:102
 #, javascript-format
 msgid "Report module meta model directory %s not found"
-msgstr ""
+msgstr "Каталог метамодели модуля отчета %s не найден"
 
 #: lib/import.js:87
 #, javascript-format
 msgid "Writing navigation node %s to database."
-msgstr ""
+msgstr "Запись навигационного узла %s в базу данных."
 
 #: lib/import.js:120
 #, javascript-format
 msgid "Importing report module meta model from %s"
-msgstr ""
+msgstr "Импорт метамодели модуля отчетов из %s"
 
 #: lib/impl/DsReportMetaRepository.js:216
 msgid "Navigation node namespace not specified!"
-msgstr ""
+msgstr "Пространство имен навигационного узла не указано!"
 
 #: lib/impl/StdMineBuilder.js:68
 #, javascript-format
 msgid "Syntax error in aggregation expression %s"
-msgstr ""
+msgstr "Синтаксическая ошибка в выражении агрегации %s"
 
 #: lib/impl/StdMineBuilder.js:366
 msgid "Data source forming logic not specified."
-msgstr ""
+msgstr "Логика формирования источника данных не указана."
 
 #: lib/rebuilder.js:31
 #, javascript-format
 msgid "Data source %s.%s build started"
-msgstr ""
+msgstr "Источник данных %s.%s сборка началась"
 
 #: lib/rebuilder.js:37
 #, javascript-format
 msgid "Data source %s.%s build complete"
-msgstr ""
+msgstr "Источник данных %s.%s сборка завершена"
 
 #: strings/frontend-scripts.js:4
 msgid "Mb"
-msgstr ""
+msgstr "Мб"
 
 #: strings/frontend-scripts.js:5
 msgid "Kb"
-msgstr ""
+msgstr "Кб"
 
 #: strings/frontend-scripts.js:6
 msgid "byte"
-msgstr ""
+msgstr "байт"
 
 #: strings/frontend-scripts.js:7
 msgid "Wait..."
-msgstr ""
+msgstr "Подождите..."
 
 #: strings/frontend-scripts.js:8
 msgid "Search:"
-msgstr ""
+msgstr "Поиск:"
 
 #: strings/frontend-scripts.js:9
 msgid "Show by _MENU_"
-msgstr ""
+msgstr "Показать по _MENU_"
 
 #: strings/frontend-scripts.js:10
 msgid "Records from _START_ to _END_ of _TOTAL_ records"
-msgstr ""
+msgstr "Записи с _START_ по _END_ из _TOTAL_ записей"
 
 #: strings/frontend-scripts.js:11
 msgid "Records from 0 to 0 of 0 records"
-msgstr ""
+msgstr "Записи с 0 по 0 из 0 записей"
 
 #: strings/frontend-scripts.js:12
 msgid "(total _MAX_)"
-msgstr ""
+msgstr "(всего _MAX_)"
 
 #: strings/frontend-scripts.js:14 strings/templates-default.js:28
 msgid "Loading..."
-msgstr ""
+msgstr "Загружается..."
 
 #: strings/frontend-scripts.js:15
 msgid "No records."
-msgstr ""
+msgstr "Нет записей."
 
 #: strings/frontend-scripts.js:16
 msgid "Table has no data"
-msgstr ""
+msgstr "Таблица не содержит данных"
 
 #: strings/frontend-scripts.js:17
 msgid "<<"
-msgstr ""
+msgstr "<<"
 
 #: strings/frontend-scripts.js:18
 msgid "<"
-msgstr ""
+msgstr "<"
 
 #: strings/frontend-scripts.js:19
 msgid ">"
-msgstr ""
+msgstr ">"
 
 #: strings/frontend-scripts.js:20
 msgid ">>"
-msgstr ""
+msgstr ">>"
 
 #: strings/frontend-scripts.js:21
 msgid ": activate for sorting by ascending order"
-msgstr ""
+msgstr ": активация для сортировки по возрастанию"
 
 #: strings/frontend-scripts.js:22 strings/frontend-scripts.js:41
 msgid "failed to get data from %url"
-msgstr ""
+msgstr "не удалось получить данные из %url"
 
 #: strings/frontend-scripts.js:23
 msgid "Quan"
-msgstr ""
+msgstr "Количество"
 
 #: strings/frontend-scripts.js:24
 msgid "Count"
-msgstr ""
+msgstr "Подсчет"
 
 #: strings/frontend-scripts.js:25
 msgid "Count unique"
-msgstr ""
+msgstr "Подсчет уникальных"
 
 #: strings/frontend-scripts.js:26
 msgid "List unique"
-msgstr ""
+msgstr "Список уникальных"
 
 #: strings/frontend-scripts.js:27
 msgid "Sum"
-msgstr ""
+msgstr "Сумма"
 
 #: strings/frontend-scripts.js:28
 msgid "Sum of integer"
-msgstr ""
+msgstr "Сумма целых чисел"
 
 #: strings/frontend-scripts.js:29
 msgid "Average"
-msgstr ""
+msgstr "Среднее"
 
 #: strings/frontend-scripts.js:30
 msgid "Minimum"
-msgstr ""
+msgstr "Минимум"
 
 #: strings/frontend-scripts.js:31
 msgid "Maximum"
-msgstr ""
+msgstr "Максимум"
 
 #: strings/frontend-scripts.js:32
 msgid "Sum by sum"
-msgstr ""
+msgstr "Сумма к сумме"
 
 #: strings/frontend-scripts.js:33
 #, javascript-format
 msgid "80% of roof"
-msgstr ""
+msgstr "80% верхнего значения"
 
 #: strings/frontend-scripts.js:34
 #, javascript-format
 msgid "80% of floor"
-msgstr ""
+msgstr "80% нижнего значения"
 
 #: strings/frontend-scripts.js:35
 msgid "Total sum"
-msgstr ""
+msgstr "Итоговая сумма"
 
 #: strings/frontend-scripts.js:36
 msgid "Row sum"
-msgstr ""
+msgstr "Сумма строки"
 
 #: strings/frontend-scripts.js:37
 msgid "Column sum"
-msgstr ""
+msgstr "Сумма столбца"
 
 #: strings/frontend-scripts.js:38
 msgid "Total count"
-msgstr ""
+msgstr "Общее количество"
 
 #: strings/frontend-scripts.js:39
 msgid "Count in row"
-msgstr ""
+msgstr "Количество в строке"
 
 #: strings/frontend-scripts.js:40
 msgid "Count in column"
-msgstr ""
+msgstr "Количество в столбце"
 
 #: strings/frontend-scripts.js:42
 msgid "Please specify filter options."
-msgstr ""
+msgstr "Пожалуйста, укажите параметры фильтра."
 
 #: strings/frontend-scripts.js:43 strings/templates-default.js:38
 msgid "Select filter..."
-msgstr ""
+msgstr "Выберите фильтр..."
 
 #: strings/templates-default.js:4
 msgid "Home"
@@ -240,31 +240,31 @@ msgstr "Страница не найдена"
 
 #: strings/templates-default.js:6
 msgid "We could not find page you are looking for."
-msgstr ""
+msgstr "Мы не смогли найти страницу, которую вы ищете."
 
 #: strings/templates-default.js:7
 msgid "Server error"
-msgstr ""
+msgstr "Ошибка сервера"
 
 #: strings/templates-default.js:8
 msgid "Something went wrong"
-msgstr ""
+msgstr "Что-то пошло не так"
 
 #: strings/templates-default.js:9
 msgid "We are working on fixing this error right now."
-msgstr ""
+msgstr "Мы работаем над устранением этой ошибки прямо сейчас."
 
 #: strings/templates-default.js:10
 msgid "Search..."
-msgstr ""
+msgstr "Поиск..."
 
 #: strings/templates-default.js:11
 msgid "Version"
-msgstr ""
+msgstr "Версия"
 
 #: strings/templates-default.js:12
 msgid "Copyright"
-msgstr ""
+msgstr "Авторские права"
 
 #: strings/templates-default.js:13
 msgid "Exit"
@@ -272,103 +272,103 @@ msgstr "Выход"
 
 #: strings/templates-default.js:14
 msgid "User avatar"
-msgstr ""
+msgstr "Аватар пользователя"
 
 #: strings/templates-default.js:15
 msgid "admin panel"
-msgstr ""
+msgstr "панель администратора"
 
 #: strings/templates-default.js:16
 msgid "No reports set up for this link"
-msgstr ""
+msgstr "Нет отчетов настроенных для этой ссылки"
 
 #: strings/templates-default.js:17
 msgid "Export"
-msgstr ""
+msgstr "Экспортировать"
 
 #: strings/templates-default.js:18
 msgid "Download export results"
-msgstr ""
+msgstr "Скачать результаты экспорта"
 
 #: strings/templates-default.js:19
 msgid "Print"
-msgstr ""
+msgstr "Печать"
 
 #: strings/templates-default.js:20
 msgid "none"
-msgstr ""
+msgstr "ничего"
 
 #: strings/templates-default.js:21
 msgid "Builds journal"
-msgstr ""
+msgstr "Журнал сборок"
 
 #: strings/templates-default.js:22
 msgid "Data source"
-msgstr ""
+msgstr "Источник данных"
 
 #: strings/templates-default.js:23
 msgid "Last build date"
-msgstr ""
+msgstr "Дата последней сборки"
 
 #: strings/templates-default.js:24
 msgid "refreshing"
-msgstr ""
+msgstr "обновление"
 
 #: strings/templates-default.js:25
 msgid "Reload data source"
-msgstr ""
+msgstr "Перезагрузить источник данных"
 
 #: strings/templates-default.js:26
 msgid "Prepare data source"
-msgstr ""
+msgstr "Подготовить источник данных"
 
 #: strings/templates-default.js:27
 msgid "Data source not ready"
-msgstr ""
+msgstr "Источник данных не готов"
 
 #: strings/templates-default.js:29
 msgid "Apply"
-msgstr ""
+msgstr "Применить"
 
 #: strings/templates-default.js:30
 msgid "Table filters"
-msgstr ""
+msgstr "Фильтры таблицы"
 
 #: strings/templates-default.js:31
 msgid "no"
-msgstr ""
+msgstr "нет"
 
 #: strings/templates-default.js:32
 msgid "Data source is preparing"
-msgstr ""
+msgstr "Источник данных готовится"
 
 #: strings/templates-default.js:33
 msgid "Data mine build complete."
-msgstr ""
+msgstr "Сборка источника данных завершена."
 
 #: strings/templates-default.js:34
 msgid "Data mine build started."
-msgstr ""
+msgstr "Сборка источника данных запущена."
 
 #: strings/templates-default.js:35
 msgid "Failed to start data mine build."
-msgstr ""
+msgstr "Не удалось запустить сборку источника данных."
 
 #: strings/templates-default.js:36
 msgid "Proceed"
-msgstr ""
+msgstr "Продолжить"
 
 #: strings/templates-default.js:37
 msgid "Report filter"
-msgstr ""
+msgstr "Фильтр отчетов"
 
 #: strings/templates-default.js:39
 msgid "Reset filter"
-msgstr ""
+msgstr "Сбросить фильтр"
 
 #: strings/templates-default.js:40
 msgid "Specify filter name..."
-msgstr ""
+msgstr "Укажите имя фильтра..."
 
 #: strings/templates-default.js:41
 msgid "Save"
@@ -376,28 +376,28 @@ msgstr "Сохранить"
 
 #: strings/templates-default.js:42
 msgid "Save filter"
-msgstr ""
+msgstr "Сохранить фильтр"
 
 #: strings/templates-default.js:43
 msgid "Delete filter"
-msgstr ""
+msgstr "Удалить фильтр"
 
 #: strings/templates-default.js:44
 msgid "Apply filter"
-msgstr ""
+msgstr "Применить фильтр"
 
 #: strings/errors/backend.js:5
 msgid "Builders for data mine \"%mine\" are not set up"
-msgstr ""
+msgstr "Сборщики для источника данных \"%mine\" не настроены"
 
 #: strings/errors/backend.js:6
 msgid "Builder for data source \"%mine.%src\" is not set up."
-msgstr ""
+msgstr "Сборщик для источника данных \"%mine.%src\" не настроен."
 
 #: strings/errors/backend.js:7
 msgid "Builder for data source \"%mine.%src\" not found."
-msgstr ""
+msgstr "Сборщик для источника данных \"%mine.%src\" не найден."
 
 #: strings/errors/backend.js:8
 msgid "File not found!"
-msgstr ""
+msgstr "Файл не найден!"
