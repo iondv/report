@@ -10,7 +10,7 @@ module.exports = {
   'js.common.dt.info': t('Records from _START_ to _END_ of _TOTAL_ records'),
   'js.common.dt.infoEmpty': t('Records from 0 to 0 of 0 records'),
   'js.common.dt.infoFiltered': t('(total _MAX_)'),
-  'js.common.dt.infoPostFix': t(''),
+  // 'js.common.dt.infoPostFix': t(''),
   'js.common.dt.loadingRecords': t('Loading...'),
   'js.common.dt.zeroRecords': t('No records.'),
   'js.common.dt.emptyTable': t('Table has no data'),
