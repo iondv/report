@@ -145,7 +145,7 @@ if ($.fn.dataTable) {
       info: __('js.common.dt.info'),
       infoEmpty: __('js.common.dt.infoEmpty'),
       infoFiltered: __('js.common.dt.infoFiltered'),
-      infoPostFix: __('js.common.dt.infoPostFix'),
+      infoPostFix: "", // infoPostFix: __('js.common.dt.infoPostFix'),
       loadingRecords: __('js.common.dt.loadingRecords'),
       zeroRecords: __('js.common.dt.zeroRecords'),
       emptyTable: __('js.common.dt.emptyTable'),
