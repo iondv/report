@@ -1,13 +1,13 @@
 {
   "name": "report",
-  "version": "3.0.0",
+  "version": "3.1.0",
   "homepage": "https://github.com/iondv/report",
   "bugs": {
     "url": "https://github.com/iondv/report/issues"
   },
   "license": "Apache License 2.0",
   "engines": {
-    "ion": "4.0.0"
+    "ion": "4.1.0"
   },
   "repository": {
     "type": "git",
