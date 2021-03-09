@@ -3,7 +3,7 @@
  */
 'use strict';
 
-var read = require('lib/config-reader');
+var read = require('@iondv/commons/lib/config-reader');
 var config = require('./config.json');
 
 module.exports = read(config, __dirname);
