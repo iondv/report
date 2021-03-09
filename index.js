@@ -67,9 +67,8 @@ app._init = function (moduleName) {
         module: app
       },
       'app',
-      [],
-      'modules/' + moduleName)
-    )
+      []
+    ))
     .then(scope => alias(scope, scope.settings.get(moduleName + '.di-alias')))
     .then((scope) => {
       const staticOptions = isProduction ? scope.settings.get('staticOptions') : undefined;
@@ -90,11 +89,11 @@ app._init = function (moduleName) {
         extViews(app, scope.settings.get(moduleName + '.templates'));
         let statics = staticRouter(scope.settings.get(moduleName + '.statics'), staticOptions);
         if (statics) {
-          app.use('/' + moduleName, statics);
+          app.use('/', statics);
         }
         scope.auth.bindAuth(app, moduleName, {auth: false});
-        app.use('/' + moduleName, sysMenuCheck(scope, app, moduleName));
-        app.use('/' + moduleName, router);
+        app.use('/', sysMenuCheck(scope, app, moduleName));
+        app.use('/', router);
       } catch (err) {
         return Promise.reject(err);
       }
