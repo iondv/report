@@ -3,7 +3,7 @@
   "sysTitle": "ION Datamining",
   "di": {
     "reportMeta": {
-      "module": "./lib/impl/DsReportMetaRepository",
+      "module": "@iondv/report/lib/impl/DsReportMetaRepository",
       "initMethod": "init",
       "initLevel": 1,
       "options": {
@@ -12,7 +12,7 @@
       }
     },
     "mineBuilder": {
-      "module": "./lib/impl/StdMineBuilder",
+      "module": "@iondv/report/lib/impl/StdMineBuilder",
       "options": {
         "dataSource": "ion://Db",
         "metaRepo": "ion://metaRepo",
@@ -20,7 +20,7 @@
       }
     },
     "reportBuilder": {
-      "module": "./lib/impl/StdReportBuilder",
+      "module": "@iondv/report/lib/impl/StdReportBuilder",
       "options": {
         "dataSource": "ion://Db",
         "metaRepo": "ion://metaRepo",
@@ -28,7 +28,7 @@
       }
     },
     "reportExporter": {
-      "module": "./backend/exporter",
+      "module": "@iondv/report/backend/exporter",
       "initMethod": "init",
       "initLevel": 2,
       "options": {

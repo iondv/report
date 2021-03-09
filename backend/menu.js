@@ -3,7 +3,7 @@
  */
 'use strict';
 
-const crossNav = require('lib/util/crossNav');
+const crossNav = require('@iondv/web-rte/util/crossNav');
 const GLOBAL_NS = '__global';
 
 /* jshint maxcomplexity: 25, maxstatements: 50 */

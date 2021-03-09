@@ -3,8 +3,7 @@
  */
 'use strict';
 
-const moduleName = require('../../../module-name');
-const di = require('core/di');
+const { di } = require('@iondv/core');
 const locale = require('locale');
 
 /* jshint maxstatements: 50, maxcomplexity: 30 */
@@ -13,7 +12,7 @@ module.exports = function (req, res) {
   /**
    * @type {{reportMeta: ReportMetaRepository, reportBuilder: ReportBuilder}}
    */
-  let scope = di.context(moduleName);
+  let scope = di.context(req.moduleName);
 
   let mineName = req.params.mine.split('@');
 

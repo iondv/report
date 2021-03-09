@@ -1,4 +1,4 @@
-const {w: t} = require('core/i18n');
+const {w: t} = require('@iondv/i18n');
 
 module.exports = {
   'js.common.mb': t('Mb'),

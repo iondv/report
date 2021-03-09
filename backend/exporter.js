@@ -1,6 +1,6 @@
 'use strict';
 
-const Background = require('core/impl/Background');
+const Background = require('@iondv/commons/lib/Background');
 const path = require('path');
 const fs = require('fs');
 const mimes = require('mime-types');
@@ -8,7 +8,7 @@ const clone = require('clone');
 const mkdirp = require('mkdirp');
 const base64 = require('base64-js');
 
-const toAbsolutePath = require('core/system').toAbsolute;
+const { utils: { system: { toAbsolute: toAbsolutePath } } } = require('@iondv/core');
 const toExcel = require('./export/excel');
 const processSheet = require('./util').processSheet;
 const formFilter = require('./util').formFilter;

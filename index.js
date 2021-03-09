@@ -9,24 +9,25 @@ const express = require('express');
 const route = express.Router;
 const router = route();
 const ejsLocals = require('ejs-locals');
-const di = require('core/di');
+
+const { di, utils: { strings } } = require('@iondv/core');
+const { load } = require('@iondv/i18n');
+const { utils: { extendDi } } = require('@iondv/commons');
+
+const {
+  util: {
+    staticRouter, extViews, theme, lastVisit, viewResolver: viewPathResolver
+  }
+} = require('@iondv/web');
+const sysMenuCheck = require('@iondv/web-rte/util/sysMenuCheck');
+
+const alias = di.alias;
+
 const config = require('./config');
-const moduleName = require('./module-name');
 const dispatcher = require('./dispatcher');
-const staticRouter = require('lib/util/staticRouter');
-const extViews = require('lib/util/extViews');
-const extendDi = require('core/extendModuleDi');
-const theme = require('lib/util/theme');
-const alias = require('core/scope-alias');
-const sysMenuCheck = require('lib/util/sysMenuCheck');
-const lastVisit = require('lib/last-visit');
-const viewPathResolver = require('lib/util/viewResolver');
-const errorSetup = require('core/error-setup');
-const strings = require('core/strings');
-const {load} = require('core/i18n');
+
 const isProduction = process.env.NODE_ENV === 'production';
 
-errorSetup(path.join(__dirname, 'strings'));
 strings.registerBase('frontend', require('./strings/frontend-scripts'));
 strings.registerBase('tpl', require('./strings/templates-default'));
 
@@ -53,13 +54,12 @@ app.locals.sysTitle = config.sysTitle;
 app.locals.staticsSuffix = process.env.ION_ENV === 'production' ? '.min' : '';
 app.locals.resolveTpl = viewPathResolver(app);
 
-app.use('/' + moduleName, express.static(path.join(__dirname, 'view/static')));
-
 app.engine('ejs', ejsLocals);
 app.set('view engine', 'ejs');
 
-app._init = function () {
-  return load(path.join(__dirname, 'i18n'))
+app._init = function (moduleName) {
+  // app.use('/' + moduleName, express.static(path.join(__dirname, 'view/static')));
+  return load(path.join(process.cwd(), 'i18n'))
     .then(() => di(
       moduleName,
       extendDi(moduleName, config.di),

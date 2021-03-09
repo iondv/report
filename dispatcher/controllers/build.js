@@ -4,9 +4,8 @@
 // jscs:disable requireCamelCaseOrUpperCaseIdentifiers
 'use strict';
 
-const moduleName = require('../../module-name');
-const di = require('core/di');
-const __ = require('core/strings').unprefix('errors');
+const { di, utils: { strings } } = require('@iondv/core');
+const __ = strings.unprefix('errors');
 const Errors = require('../../errors/backend');
 
 /**
@@ -31,7 +30,7 @@ module.exports = function (req, res) {
   /**
    * @type {{reportMeta: ReportMetaRepository, settings: SettingsRepository, sysLog: Logger}}
    */
-  const scope = di.context(moduleName);
+  const scope = di.context(req.moduleName);
   const mineName = req.params.mine.split('@');
 
   /**
@@ -46,7 +45,7 @@ module.exports = function (req, res) {
     return res.sendStatus(404);
   }
 
-  let builders = scope.settings.get(moduleName + '.mineBuilders') || {};
+  let builders = scope.settings.get(req.moduleName + '.mineBuilders') || {};
 
   if (!builders.hasOwnProperty(mine.namespace()) || !builders[mine.namespace()].hasOwnProperty(mine.name())) {
     scope.sysLog.error(__(Errors.NO_BUILDERS, {mine: mine.name()}));

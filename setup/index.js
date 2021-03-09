@@ -3,7 +3,7 @@
  */
 'use strict';
 
-var importer = require('../lib/import');
+const importer = require('../lib/import');
 
 // jshint maxcomplexity: 20, maxdepth: 10, maxstatements: 25
 /**

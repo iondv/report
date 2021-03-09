@@ -4,8 +4,7 @@
  */
 'use strict';
 
-const moduleName = require('../../module-name');
-const di = require('core/di');
+const { di } = require('@iondv/core');
 const processSheet = require('../../backend/util').processSheet;
 const formFilter = require('../../backend/util').formFilter;
 const pnf = require('../../backend/pnf');
@@ -17,7 +16,7 @@ module.exports = function (req, res) {
   /**
    * @type {{reportMeta: ReportMetaRepository, reportBuilder: ReportBuilder}}
    */
-  let scope = di.context(moduleName);
+  let scope = di.context(req.moduleName);
 
   /**
    * @type {DataMine|null}
@@ -63,7 +62,7 @@ module.exports = function (req, res) {
       }
       let options = {
         baseUrl: req.app.locals.baseUrl,
-        module: moduleName,
+        module: req.moduleName,
         locale: {
           lang: lang,
           dateFormat: moment.localeData(lang).longDateFormat('L'),

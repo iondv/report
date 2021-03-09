@@ -4,8 +4,8 @@
  */
 'use strict';
 
-const moduleName = require('../../module-name');
-const di = require('core/di');
+const { di } = require('@iondv/core');
+
 const formFilter = require('../../backend/util').formFilter;
 const locale = require('locale');
 
@@ -14,7 +14,7 @@ module.exports = function (req, res) {
   /**
    * @type {{reportMeta: ReportMetaRepository, reportBuilder: ReportBuilder}}
    */
-  let scope = di.context(moduleName);
+  let scope = di.context(req.moduleName);
 
   let mineName = req.params.mine.split('@');
 

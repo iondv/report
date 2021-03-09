@@ -1,4 +1,4 @@
-/node_modules/*
+/node_modules
 /view/**/node_modules/*
 /view/**/vendor/*
 /view/**/static/vendor/*

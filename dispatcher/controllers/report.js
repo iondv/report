@@ -4,15 +4,15 @@
 // jscs:disable requireCamelCaseOrUpperCaseIdentifiers
 'use strict';
 
-const moduleName = require('../../module-name');
-const di = require('core/di');
+const { di } = require('@iondv/core');
 const pnf = require('../../backend/pnf');
 const buildMenu = require('../../backend/menu').buildMenu;
 const processReport = require('../../backend/util').processReport;
 const infoPromise = require('../../backend/util').infoPromise;
 const moment = require('moment');
 const locale = require('locale');
-const __ = require('core/strings').unprefix('errors');
+const { utils: { strings } } = require('@iondv/core');
+const __ = strings.unprefix('errors');
 const Errors = require('../../errors/backend');
 
 /* jshint maxstatements: 50, maxcomplexity: 30 */
@@ -21,7 +21,7 @@ module.exports = function (req, res) {
   /**
    * @type {{reportMeta: ReportMetaRepository, settings: SettingsRepository, sysLog: Logger}}
    */
-  let scope = di.context(moduleName);
+  let scope = di.context(req.moduleName);
   /**
    * @type {DataMine|null}
    */
@@ -33,7 +33,7 @@ module.exports = function (req, res) {
   if (!report) {
     return pnf(req, res, scope);
   }
-  let builders = scope.settings.get(moduleName + '.mineBuilders') || {};
+  let builders = scope.settings.get(req.moduleName + '.mineBuilders') || {};
   if (!builders.hasOwnProperty(mine.namespace()) || !builders[mine.namespace()].hasOwnProperty(mine.name())) {
     scope.sysLog.error(__(Errors.NO_BUILDERS, {mine: mine.name()}));
     return res.sendStatus(404);
@@ -70,14 +70,14 @@ module.exports = function (req, res) {
         'view/report',
         {
           baseUrl: req.app.locals.baseUrl,
-          module: moduleName,
+          module: req.moduleName,
           title: report.caption(),
           pageCode: report.name(),
           sourcesInfo: info.length ? info : null,
           mine: mine,
           node: `${req.params.mine}@${req.params.report}`,
           report: report,
-          leftMenu: buildMenu(moduleName, scope.settings, scope.reportMeta, scope.metaRepo),
+          leftMenu: buildMenu(req.moduleName, scope.settings, scope.reportMeta, scope.metaRepo),
           locale: {
             lang: lang,
             dateFormat: moment.localeData(lang).longDateFormat('L'),
@@ -85,7 +85,7 @@ module.exports = function (req, res) {
           },
           sheets: processReport(report),
           user: scope.auth.getUser(req),
-          logo: scope.settings.get(moduleName + '.logo'),
+          logo: scope.settings.get(req.moduleName + '.logo'),
           pageTitle: `${req.app.locals.pageTitle} - ${report.caption()}`,
         }
       );

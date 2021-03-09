@@ -4,9 +4,8 @@
 'use strict';
 const clone = require('clone');
 const moment = require('moment');
-const F = require('core/FunctionCodes');
-const dateOffset = require('core/util/dateOffset');
-const strToDate = require('core/strToDate');
+const { FunctionCodes: F, util: { dateOffset } } = require('@iondv/meta-model-contracts');
+const { utils: { strToDate } } = require('@iondv/commons');
 
 // jshint maxcomplexity: 15
 

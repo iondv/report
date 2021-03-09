@@ -15,7 +15,19 @@
   },
   "private": true,
   "dependencies": {
+    "@iondv/commons": "iondv/commons#main",
+    "@iondv/core": "iondv/core#main",
+    "@iondv/i18n": "iondv/i18n#main",
+    "@iondv/meta-model": "iondv/meta-model#main",
+    "@iondv/meta-model-contracts": "iondv/meta-model-contracts#main",
+    "@iondv/web": "iondv/web#main",
+    "@iondv/web-rte": "iondv/web-rte#main",
+    "base64-js": "^1.5.1",
+    "clone": "^2.1.2",
+    "exceljs": "^1.2.1",
     "mime-types": "^2.1.18",
-    "exceljs": "^1.2.1"
+    "mkdirp": "^1.0.4",
+    "moment": "^2.29.1",
+    "locale": "^0.1.0"
   }
 }

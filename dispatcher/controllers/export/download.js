@@ -3,9 +3,8 @@
  */
 'use strict';
 
-const moduleName = require('../../../module-name');
-const di = require('core/di');
-const __ = require('core/strings').unprefix('errors');
+const { di, utils: { strings } } = require('@iondv/core');
+const __ = strings.unprefix('errors');
 const Errors = require('../../../errors/backend');
 
 /* jshint maxstatements: 50, maxcomplexity: 30 */
@@ -14,7 +13,7 @@ module.exports = function (req, res) {
   /**
    * @type {{reportMeta: ReportMetaRepository, reportExporter: ReportExporter}}
    */
-  const scope = di.context(moduleName);
+  const scope = di.context(req.moduleName);
 
   const mineName = req.params.mine.split('@');
 

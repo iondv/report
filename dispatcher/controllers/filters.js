@@ -1,7 +1,6 @@
 'use strict';
 
-const moduleName = require('../../module-name');
-const di = require('core/di');
+const { di } = require('@iondv/core');
 const locale = require('locale');
 
 function findField(fieldId, columns) {
@@ -26,7 +25,7 @@ module.exports = function (req, res) {
   /**
    * @type {{reportMeta: ReportMetaRepository, reportBuilder: ReportBuilder}}
    */
-  let scope = di.context(moduleName);
+  let scope = di.context(req.moduleName);
 
   let mineName = req.params.mine.split('@');
 

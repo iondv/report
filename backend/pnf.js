@@ -1,16 +1,15 @@
 'use strict';
-const moduleName = require('../module-name');
 const buildMenu = require('./menu').buildMenu;
-const {t} = require('core/i18n');
+const { t } = require('@iondv/i18n');
 
-module.exports = function (req, res, scope) {
+module.exports = (req, res, scope) => {
   res.render('view/404', {
-    module: moduleName,
+    module: req.moduleName,
     title: t('Report not found'),
     pageCode: '404',
     node: `${req.params.mine}@${req.params.report}`,
-    leftMenu: buildMenu(moduleName, scope.settings, scope.reportMeta, scope.metaRepo),
+    leftMenu: buildMenu(req.moduleName, scope.settings, scope.reportMeta, scope.metaRepo),
     user: scope.auth.getUser(req),
-    logo: scope.settings.get(moduleName + '.logo')
+    logo: scope.settings.get(req.moduleName + '.logo')
   });
 };
