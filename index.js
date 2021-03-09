@@ -66,8 +66,7 @@ app._init = function (moduleName) {
       {
         module: app
       },
-      'app',
-      []
+      'app'
     ))
     .then(scope => alias(scope, scope.settings.get(moduleName + '.di-alias')))
     .then((scope) => {
