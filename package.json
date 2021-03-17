@@ -9,6 +9,9 @@
   "engines": {
     "ion": "4.0.0"
   },
+  "bin": {
+    "bi-import": "bin/import.js"
+  },  
   "scripts": {
     "install": "cd view/default/static && npm install"
   },  
