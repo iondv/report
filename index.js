@@ -75,7 +75,7 @@ app._init = function (moduleName) {
       try {
         theme(
           app,
-          moduleName,
+          null,
           __dirname,
           themePath,
           scope.sysLog,
