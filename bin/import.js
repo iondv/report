@@ -19,5 +19,11 @@ process.argv.forEach(function (val) {
 });
 
 importer(params.src, params.module, params.ns)
-  .then(() => console.log('Import done'))
-  .catch((err) => console.error(err));
+  .then(() => {
+    console.log('Import done');
+    process.exit(0);
+  })
+  .catch((err) => {
+    console.error(err);
+    process.exit(1);
+  });
