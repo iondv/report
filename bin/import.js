@@ -4,6 +4,7 @@ const importer = require('../lib/import');
 
 const params = {
   src: './bi',
+  module: 'report',
   ns: null
 };
 
@@ -17,6 +18,6 @@ process.argv.forEach(function (val) {
   }
 });
 
-importer(params.src, params.ns)
+importer(params.src, params.module, params.ns)
   .then(() => console.log('Import done'))
   .catch((err) => console.error(err));
