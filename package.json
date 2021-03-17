@@ -11,10 +11,10 @@
   },
   "bin": {
     "bi-import": "bin/import.js"
-  },  
+  },
   "scripts": {
     "install": "cd view/default/static && npm install"
-  },  
+  },
   "repository": {
     "type": "git",
     "url": "https://github.com/iondv/report.git"
@@ -31,9 +31,10 @@
     "base64-js": "^1.5.1",
     "clone": "^2.1.2",
     "exceljs": "^1.2.1",
+    "extend": "^3.0.2",
+    "locale": "^0.1.0",
     "mime-types": "^2.1.18",
     "mkdirp": "^1.0.4",
-    "moment": "^2.29.1",
-    "locale": "^0.1.0"
+    "moment": "^2.29.1"
   }
 }
