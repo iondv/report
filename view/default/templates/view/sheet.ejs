@@ -1,11 +1,11 @@
 <!-- view/report -->
 <% layout('../content') %>
-<% stylesheet(`${module}/node_modules/pivottable/pivot.css`) - %>
+<% stylesheet(`${module}/vendor/pivottable/pivot.css`) - %>
 
-<script src="<%= module %>/node_modules/jquery.floatThead/dist/jquery.floatThead.min.js"></script>
+<script src="<%= module %>/vendor/jquery.floatThead/dist/jquery.floatThead.min.js"></script>
 <script src="<%= module %>/js/sheet<%= staticsSuffix %>.js"></script>
-<script src="<%= module %>/node_modules/pivottable/dist/pivot.min.js"></script>
-<script src="<%= module %>/node_modules/pivottable/dist/pivot.ru.min.js"></script>
+<script src="<%= module %>/vendor/pivottable/dist/pivot.min.js"></script>
+<script src="<%= module %>/vendor/pivottable/dist/pivot.ru.min.js"></script>
 <script src="<%= module %>/js/pivot<%= staticsSuffix %>.js"></script>
 
 <div class="panel panel-default list-container">
@@ -326,7 +326,7 @@
   });
 </script>
 
-<script src="<%=module%>/node_modules/file-saver/FileSaver.min.js"></script>
-<script src="<%=module%>/node_modules/pdfmake/build/pdfmake.js"></script>
-<script src="<%=module%>/node_modules/pdfmake/build/vfs_fonts.js"></script>
+<script src="<%=module%>/vendor/file-saver/FileSaver.min.js"></script>
+<script src="<%=module%>/vendor/pdfmake/build/pdfmake.js"></script>
+<script src="<%=module%>/vendor/pdfmake/build/vfs_fonts.js"></script>
 <script src="<%=module%>/js/export.js"></script>
