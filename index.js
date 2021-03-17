@@ -90,7 +90,7 @@ app._init = function (moduleName) {
         if (statics) {
           app.use('/', statics);
         }
-        scope.auth.bindAuth(app, moduleName, {auth: false});
+        scope.auth.bindAuth(app, '', {auth: false});
         app.use('/', sysMenuCheck(scope, app, moduleName));
         app.use('/', router);
       } catch (err) {
