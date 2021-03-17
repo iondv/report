@@ -1,9 +1,9 @@
-'use strict';
+#!/usr/bin/env node
 
 const importer = require('../lib/import');
 
 const params = {
-  src: process.cwd(),
+  src: './bi',
   ns: null
 };
 
@@ -19,4 +19,4 @@ process.argv.forEach(function (val) {
 
 importer(params.src, params.ns)
   .then(() => console.log('Import done'))
-  .catch((err) => console.error(err))
+  .catch((err) => console.error(err));
