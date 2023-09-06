@@ -50,7 +50,7 @@
         "fastclick": "1.0.6",
         "file-saver": "1.3.3",
         "font-awesome-min": "git+https://git.iondv.com/node-modules/font-awesome-min",
-        "jquery": "2.2.4",
+        "jquery": "3.5.0",
         "js-cookie": "2.2.1",
         "xlsx": "git+https://git.iondv.com/node-modules/xlsx",
         "jspdf-autotable": "3.2.11",
